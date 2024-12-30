@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import React from 'react'
+
 
 export default function Navbar() {
   return (
@@ -13,8 +15,8 @@ export default function Navbar() {
                 <h2 className='text-4xl font-bold uppercase'>Store</h2>
             </li>
             <li className='space-x-5'>
-                <button className=' px-2 py-1 rounded-md bg-gray-600  font-bold'>Login</button>
-                <button className=' px-2 py-1 rounded-md bg-blue-500   text-gray-950'>Register</button>
+                <Link href="/login" className=' px-2 py-1 rounded-md bg-gray-600  font-bold'>Login</Link>
+                <Link href="/Register" className=' px-2 py-1 rounded-md bg-blue-500   text-gray-950'>Register</Link>
             </li>
         
         </ul>

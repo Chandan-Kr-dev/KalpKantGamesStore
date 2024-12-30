@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Navbar from "./Components/Navbar";
-import Navbar2 from "./Components/Navbar2";
-import Home from "./pages/Home/page";
+import Navbar from "../components/Navbar";
+import Navbar2 from "../components/Navbar2";
+import Home from "./Home/page";
 
 export default function App() {
   return (
