@@ -39,7 +39,7 @@ export default function Login() {
                 Email
               </label>
               <input
-                className="col-span-2 bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
+                className="col-span-2 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="email"
                 placeholder="Email"
               />
@@ -49,7 +49,7 @@ export default function Login() {
                 Password
               </label>
               <input
-                className="col-span-2 bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
+                className="col-span-2 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="password"
                 placeholder="********"
               />

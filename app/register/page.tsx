@@ -26,7 +26,7 @@ export default function Register() {
   return (
     <section className="mx-44 my-5">
       <main className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
-        <div className="bg-zinc-800 p-5 rounded-xl">
+        <div className="bg-zinc-800 p-5 rounded-xl w-[28vw]">
           <header className="flex justify-between items-center ">
             <Link href="/login" className=" w-full text-center">
               Login
@@ -43,7 +43,7 @@ export default function Register() {
             onSubmit={handleSubmit}
             action=""
           >
-            <div className="input grid grid-cols-3">
+            <div className="input grid grid-cols-4">
               <label
                 className="col-span-1 text-slate-400 font-semibold"
                 htmlFor=""
@@ -51,12 +51,12 @@ export default function Register() {
                 Name
               </label>
               <input
-                className="col-span-2 bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
+                className="col-span-3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="text"
                 placeholder="Name"
               />
             </div>
-            <div className="input grid grid-cols-3">
+            <div className="input grid grid-cols-4">
               <label
                 className="col-span-1 text-slate-400 font-semibold"
                 htmlFor=""
@@ -64,12 +64,12 @@ export default function Register() {
                 Email
               </label>
               <input
-                className="col-span-2 bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
+                className="col-span-3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="email"
                 placeholder="Email"
               />
             </div>
-            <div className="input grid grid-cols-3">
+            <div className="input grid grid-cols-4">
               <label
                 className="col-span-1 text-slate-400 font-semibold"
                 htmlFor=""
@@ -77,26 +77,26 @@ export default function Register() {
                 Linkedin
               </label>
               <input
-                className="col-span-2 bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
+                className="col-span-3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="text"
                 placeholder="your linkedin profile"
               />
             </div>
-            <div className="input grid grid-cols-3">
+            <div className="input grid grid-cols-4">
               <label className="text-slate-400 font-semibold" htmlFor="">
                 Your are
               </label>
               <Select>
-                <SelectTrigger className="col-span-2 bg-slate-700 px-2 py-1 text-white font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner">
-                  <SelectValue placeholder="Your Role" />
+                <SelectTrigger className="col-span-3  bg-slate-700 px-2 py-1  text-white font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner">
+                  <SelectValue className="" placeholder="Your Role" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="developer">Developer</SelectItem>
+                <SelectContent className="bg-white rounded-xl cursor-pointer">
+                  <SelectItem  value="developer">Developer</SelectItem>
                   <SelectItem value="user">user</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            <div className="input grid grid-cols-3">
+            <div className="input grid grid-cols-4">
               <label
                 className="col-span-1 text-slate-400 font-semibold"
                 htmlFor=""
@@ -104,7 +104,7 @@ export default function Register() {
                 Password
               </label>
               <input
-                className="col-span-2 bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
+                className="col-span-3 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="password"
                 placeholder="********"
               />

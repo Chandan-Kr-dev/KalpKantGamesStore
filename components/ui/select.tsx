@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
-import * as SelectPrimitive from "@radix-ui/react-select"
-import { Check, ChevronDown, ChevronUp } from "lucide-react"
+import * as React from "@/lib/node_modules/@types/react"
+import * as SelectPrimitive from "@/lib/node_modules/@radix-ui/react-select/dist/index.mjs"
+import { Check, ChevronDown, ChevronUp } from "@/lib/node_modules/lucide-react/dist/lucide-react"
 
 import { cn } from "@/lib/utils"
 
