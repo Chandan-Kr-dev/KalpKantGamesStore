@@ -112,6 +112,13 @@ export default function Home() {
           />
         </div>
       </section>
+      <section className="UserChoices text-white my-20 ">
+        <div className="coonstiner flex justify-evenly items-center">
+          <div className="box bg-green-300 h-44 w-64 rounded-xl "></div>
+          <div className="box bg-green-300 h-44 w-64 rounded-xl"></div>
+          <div className="box bg-green-300 h-44 w-64 rounded-xl"></div>
+        </div>
+      </section>
       <section className="topfeatured text-white my-20 ">
         <div>
           <h1 className="font-semibold text-xl my-3">Top featured </h1>

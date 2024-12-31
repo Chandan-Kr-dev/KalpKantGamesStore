@@ -1,13 +1,7 @@
 "use client"
 import Link from "next/link";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react"
 import { useState } from "react";
@@ -86,15 +80,10 @@ export default function Register() {
               <label className="text-slate-400 font-semibold" htmlFor="">
                 Your are
               </label>
-              <Select>
-                <SelectTrigger className="col-span-3  bg-slate-700 px-2 py-1  text-white font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner">
-                  <SelectValue className="" placeholder="Your Role" />
-                </SelectTrigger>
-                <SelectContent className="bg-white rounded-xl cursor-pointer">
-                  <SelectItem  value="developer">Developer</SelectItem>
-                  <SelectItem value="user">user</SelectItem>
-                </SelectContent>
-              </Select>
+              <select className="col-span-3 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"  name="" id="">
+                <option value="Developer">Developer</option>
+                <option value="user">user</option>
+              </select>
             </div>
             <div className="input grid grid-cols-4">
               <label
