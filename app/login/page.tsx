@@ -65,7 +65,7 @@ export default function Login() {
               </Button>
             )}
           </form>
-          <p className="text-xs text-center my-3 text-slate-500">Don't have an account ? <Link className="text-blue-500 underline" href='/register'>SignUp</Link> </p>
+          <p className="text-xs text-center my-3 text-slate-500">Don&apos;t have an account ? <Link className="text-blue-500 underline" href='/register'>SignUp</Link> </p>
           <p className="text-center text-white">----------or with--------------</p>
           <div className="sociallinks flex justify-center items-center gap-4">
             <button className="bg-blue-500 px-2 py-1 rounded-xl">
