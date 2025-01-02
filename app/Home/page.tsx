@@ -96,15 +96,15 @@ export default function Home() {
   ]
 
   return (
-    <main className="mx-44 my-5">
-      <section className="flex justify-between items-center text-white">
+    <main className="md:mx-44 mx-10 my-5">
+      <section className="flex justify-between flex-col md:flex-row items-center text-white">
         <div className="space-y-6">
-          <h1 className="text-5xl font-bold">KalpKant Games Store</h1>
-          <h2 className="min-w-[300px] w-full text-2xl font-bold tracking-wider overflow-hidden whitespace-nowrap h-32">
+          <h1 className="md:text-5xl text-3xl font-bold">KalpKant Games Store</h1>
+          <h2 className="min-w-[300px] w-full md:text-2xl text-base font-bold tracking-wider overflow-hidden whitespace-wrap h-32">
             {text}
           </h2>
         </div>
-        <div className="imagecontaner ">
+        <div className="imagecontaner  ">
           <img
             className="rounded-xl"
             src="https://imgs.search.brave.com/-Whp7vN2xr3c2keiuSmsMrpUvavi2HH6aS_Na_NDTBE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLWRl/bHRhLWZvcmNlLWNh/cm91c2VsLWRlc2t0/b3AtMTkyMHgxMDgw/LTEyZGMyOTcyMmFk/NS5qcGc_cmVzaXpl/PTEmdz0xMjgwJmg9/NzIwJnF1YWxpdHk9/bWVkaXVt"
@@ -113,7 +113,7 @@ export default function Home() {
         </div>
       </section>
       <section className="UserChoices text-white my-20 ">
-        <div className="coonstiner flex justify-evenly items-center">
+        <div className="coonstiner flex flex-col md:flex-row  justify-evenly items-center">
           <div className="box bg-green-300 h-44 w-64 rounded-xl "></div>
           <div className="box bg-green-300 h-44 w-64 rounded-xl"></div>
           <div className="box bg-green-300 h-44 w-64 rounded-xl"></div>
@@ -123,9 +123,9 @@ export default function Home() {
         <div>
           <h1 className="font-semibold text-xl my-3">Top featured </h1>
           <div className="container">
-            <div className="flex flex-wrap  justify-between items-center">
+            <div className="flex flex-wrap flex-col md:flex-row  justify-between items-center">
               {featured.map((game,idx)=>(
-                <div key={idx} hidden={idx>2} className="game-card  rounded-xl p-2 w-[25vw]">
+                <div key={idx} hidden={idx>2} className="game-card  rounded-xl p-2 md:w-[25vw]">
                 <img
                   className="rounded-xl"
                   src={game.img}
@@ -150,13 +150,13 @@ export default function Home() {
       </section>
       <section className="freegames text-white  my-20">
       <h1 className="font-semibold text-xl my-3">Top Releases </h1>
-        <div className="container flex justify-between items-center bg-slate-600 p-5 rounded-xl">
-          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md w-[30vw] h-[50vh]">
+        <div className="container flex flex-col md:flex-row justify-between items-center bg-slate-600 p-5 rounded-xl">
+          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md md:w-[30vw] md:h-[50vh]">
             <img className="rounded-xl" src="https://imgs.search.brave.com/RMgztUE7uI-iRdLD8dxkd4tYkS0Wgc95vBGMbkaRMj4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTYy/MTkwMzE4L3Bob3Rv/L2V4Y2l0ZWQtbWFu/LXBsYXlpbmctdmly/dHVhbC1yZWFsaXR5/LWdhbWVzLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1DWURt/YkUteFRzYkl6YUNC/bXVDVFhWNlprejh6/RlRnNFhZN1M1djBH/MnRJPQ" alt="" />
             <h2 className="text-start text-white font-semibold">Game Name</h2>
             <p className="text-start text-gray-300 font-light">Game Slogan Lorem ipsum dolor sit.</p>
           </button>
-          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md w-[30vw] h-[50vh]">
+          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md md:w-[30vw] md:h-[50vh]">
             <img className="rounded-xl" src="https://imgs.search.brave.com/RMgztUE7uI-iRdLD8dxkd4tYkS0Wgc95vBGMbkaRMj4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTYy/MTkwMzE4L3Bob3Rv/L2V4Y2l0ZWQtbWFu/LXBsYXlpbmctdmly/dHVhbC1yZWFsaXR5/LWdhbWVzLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1DWURt/YkUteFRzYkl6YUNC/bXVDVFhWNlprejh6/RlRnNFhZN1M1djBH/MnRJPQ" alt="" />
             <h2 className="text-start text-white font-semibold">Game Name</h2>
             <p className="text-start text-gray-300 font-light">Game Slogan Lorem ipsum dolor sit.</p>
@@ -168,9 +168,9 @@ export default function Home() {
         <div>
           <h1 className="font-semibold text-xl my-3">Top Paid Games </h1>
           <div className="container">
-            <div className="flex flex-wrap  justify-between items-center">
+            <div className="flex flex-wrap flex-col md:flex-row  justify-between items-center">
               {featured.map((game,idx)=>(
-                <div key={idx} hidden={idx>2} className="game-card  rounded-xl p-2 w-[25vw]">
+                <div key={idx} hidden={idx>2} className="game-card  rounded-xl p-2 md:w-[25vw]">
                 <img
                   className="rounded-xl"
                   src={game.img}
@@ -197,13 +197,13 @@ export default function Home() {
 
       <section className="freegames text-white  my-20">
       <h1 className="font-semibold text-xl my-3">Holiday Offers</h1>
-        <div className="container flex justify-between items-center bg-slate-600 p-5 rounded-xl">
-          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md w-[30vw] h-[50vh]">
+        <div className="container flex flex-col md:flex-row justify-between items-center bg-slate-600 p-5 rounded-xl">
+          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md md:w-[30vw] md:h-[50vh]">
             <img className="rounded-xl" src="https://imgs.search.brave.com/RMgztUE7uI-iRdLD8dxkd4tYkS0Wgc95vBGMbkaRMj4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTYy/MTkwMzE4L3Bob3Rv/L2V4Y2l0ZWQtbWFu/LXBsYXlpbmctdmly/dHVhbC1yZWFsaXR5/LWdhbWVzLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1DWURt/YkUteFRzYkl6YUNC/bXVDVFhWNlprejh6/RlRnNFhZN1M1djBH/MnRJPQ" alt="" />
             <h2 className="text-start text-white font-semibold">Game Name</h2>
             <p className="text-start text-gray-300 font-light">Game Slogan Lorem ipsum dolor sit.</p>
           </button>
-          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md w-[30vw] h-[50vh]">
+          <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md md:w-[30vw] md:h-[50vh]">
             <img className="rounded-xl" src="https://imgs.search.brave.com/RMgztUE7uI-iRdLD8dxkd4tYkS0Wgc95vBGMbkaRMj4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTYy/MTkwMzE4L3Bob3Rv/L2V4Y2l0ZWQtbWFu/LXBsYXlpbmctdmly/dHVhbC1yZWFsaXR5/LWdhbWVzLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1DWURt/YkUteFRzYkl6YUNC/bXVDVFhWNlprejh6/RlRnNFhZN1M1djBH/MnRJPQ" alt="" />
             <h2 className="text-start text-white font-semibold">Game Name</h2>
             <p className="text-start text-gray-300 font-light">Game Slogan Lorem ipsum dolor sit.</p>
