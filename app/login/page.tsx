@@ -16,9 +16,14 @@ export default function Login() {
         e.preventDefault();
 
         try {
+          setisLoading(true)
           const resposne=await axios.post('api/auth/Login',{email,password});
           console.log(resposne)
+          if(resposne.data.message==="Success"){
+            setisLoading(false)
+          }
         } catch (error) {
+          setisLoading(false)
           console.log(error)
         }
       };

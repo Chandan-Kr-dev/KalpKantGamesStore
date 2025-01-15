@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt"
 
-export async function POST(req: Request, res: NextResponse){
+export async function POST(req: Request){
     try {
         const body=await req.json();
         const {Name,email,role,password}=body;
@@ -22,6 +22,6 @@ export async function POST(req: Request, res: NextResponse){
         })
         return NextResponse.json({user:newUser,message:"User Created"},{status:201});
     } catch (error) {
-        return NextResponse.json({message:"Something went wrong"},{status:500})
+        return NextResponse.json({error:error,message:"Something went wrong"},{status:500})
     }
 }
