@@ -3,18 +3,23 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 import { useState } from "react";
+import axios from "axios";
 
 
 export default function Login() {
 
     const [isLoading, setisLoading] = useState(false);
+    const [email, setemail] = useState("")
+    const [password, setpassword] = useState("")
     
-      const handleSubmit = () => {
-        let cnt: number = 0;
-        if (cnt == 0) {
-          setisLoading(true);
-          
-          cnt = cnt + 1;
+      const handleSubmit = async(e:React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+          const resposne=await axios.post('api/auth/Login',{email,password});
+          console.log(resposne)
+        } catch (error) {
+          console.log(error)
         }
       };
   return (
@@ -41,6 +46,8 @@ export default function Login() {
               <input
                 className="col-span-2 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="email"
+                value={email}
+                onChange={e=>setemail(e.target.value)}
                 placeholder="Email"
               />
             </div>
@@ -51,6 +58,8 @@ export default function Login() {
               <input
                 className="col-span-2 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="password"
+                value={password}
+                onChange={e=>setpassword(e.target.value)}
                 placeholder="********"
               />
             </div>

@@ -1,20 +1,37 @@
-"use client"
+"use client";
 import Link from "next/link";
-
+import axios from "axios";
 
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
 export default function Register() {
   const [isLoading, setisLoading] = useState(false);
+  const [Name, setName] = useState("");
+  const [email, setemail] = useState("");
+  const [role, setrole] = useState("");
+  const [password, setpassword] = useState("");
 
-  const handleSubmit = () => {
-    let cnt: number = 0;
-    if (cnt == 0) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
       setisLoading(true);
-      
-      cnt = cnt + 1;
+
+      const response = await axios.post("api/auth/register", {
+        Name,
+        email,
+        role,
+        password,
+      });
+      console.log(response.data);
+      if (response.data.message === "User Created") {
+        setisLoading(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setisLoading(false);
     }
   };
   return (
@@ -47,6 +64,8 @@ export default function Register() {
               <input
                 className="col-span-3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="text"
+                value={Name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Name"
               />
             </div>
@@ -60,27 +79,24 @@ export default function Register() {
               <input
                 className="col-span-3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="email"
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
                 placeholder="Email"
               />
             </div>
-            <div className="input grid grid-cols-4">
-              <label
-                className="col-span-1 text-slate-400 font-semibold"
-                htmlFor=""
-              >
-                Linkedin
-              </label>
-              <input
-                className="col-span-3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
-                type="text"
-                placeholder="your linkedin profile"
-              />
-            </div>
+
             <div className="input grid grid-cols-4">
               <label className="text-slate-400 font-semibold" htmlFor="">
                 Your are
               </label>
-              <select className="col-span-3 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"  name="" id="">
+              <select
+                value={role}
+                onChange={(e) => setrole(e.target.value)}
+                className="col-span-3 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
+                name="role"
+                id="role-select"
+              >
+                <option value="">Select User Role</option>
                 <option value="Developer">Developer</option>
                 <option value="user">user</option>
               </select>
@@ -95,6 +111,8 @@ export default function Register() {
               <input
                 className="col-span-3 text-white bg-slate-700 px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="password"
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
                 placeholder="********"
               />
             </div>

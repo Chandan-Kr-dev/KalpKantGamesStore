@@ -34,10 +34,10 @@ export default function Navbar() {
             {isMobile?(
                 <li hidden={!openmenu} className='space-x-5'>
                 <Link href="/login" className=' px-2 py-1 rounded-xl bg-gray-600 font-bold text-white'>Login</Link>
-                <Link href="/Register" className=' px-2 py-1 rounded-xl bg-blue-500   text-gray-950'>Register</Link>
+                <Link href="/register" className=' px-2 py-1 rounded-xl bg-blue-500   text-gray-950'>Register</Link>
             </li>):(<li className='space-x-5'>
                 <Link href="/login" className=' px-2 py-1 rounded-xl bg-gray-600 font-bold text-white'>Login</Link>
-                <Link href="/Register" className=' px-2 py-1 rounded-xl bg-blue-500   text-gray-950'>Register</Link>
+                <Link href="/register" className=' px-2 py-1 rounded-xl bg-blue-500   text-gray-950'>Register</Link>
             </li>)}
             
             
