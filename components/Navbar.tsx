@@ -13,7 +13,11 @@ interface JwtPayload {
 }
 
 export default function Navbar() {
-  const token: string | null = window.localStorage.getItem("kkgstoken");
+    let token;
+
+    if (typeof window !== "undefined") {
+      token = window.localStorage.getItem("kkgstoken");
+    }
   const decoded = token ? jwtDecode<JwtPayload>(token) : null;
   console.log(decoded);
 
