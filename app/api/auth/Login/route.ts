@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt"
+import { generateToken } from "@/lib/jwt";
 
 export async function POST(req: Request){
     try {
@@ -11,11 +12,15 @@ export async function POST(req: Request){
         if(existingUser){
             const isMatch=await bcrypt.compare(password,existingUser.password)
             if(isMatch){
-                return NextResponse.json({message:"Success"},{status:200})
+                const token=generateToken({id:existingUser.id,email:existingUser.email,username:existingUser.Name,role:existingUser.role})
+                const response= NextResponse.json({message:"Success",token:token},{status:200})
+                // response.cookies.set('kkgstoken', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict' });
+                return response;
             }
             else{
                 return NextResponse.json({message:"Wrong Password"},{status:400})
             }
+            
         }
         else{
             return NextResponse.json({message:"User not found"},{status:404})

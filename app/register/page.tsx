@@ -28,6 +28,8 @@ export default function Register() {
       console.log(response.data);
       if (response.data.message === "User Created") {
         setisLoading(false);
+        window.localStorage.setItem('kkgstoken',response.data.token)
+        window.location.href="/"
       }
     } catch (error) {
       console.error(error);
