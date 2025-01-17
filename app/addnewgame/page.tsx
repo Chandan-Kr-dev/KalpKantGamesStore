@@ -1,10 +1,44 @@
 "use client";
 import Navbar from "@/components/Navbar";
-import React, { useRef } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import React, { useRef, useState } from "react";
+interface JwtPayload {
+    userId: string;
+    email: string;
+    username: string; // Add the username field
+    role: string;
+    exp: number; // Expiration timestamp
+  }
 
 
 export default function AddnewGame() {
-  const fileinputref = useRef<HTMLInputElement | null>(null);
+    let token;
+    
+        if (typeof window !== "undefined") {
+          token = window.localStorage.getItem("kkgstoken");
+        }
+      const decoded = token ? jwtDecode<JwtPayload>(token) : null;
+
+      
+
+    
+    const fileinputref = useRef<HTMLInputElement | null>(null);
+    
+  const [title, settitle] = useState("")
+  const [tagline, settagline] = useState("")
+  const [genre, setgenre] = useState("")
+  const [ReleasedStatus, setReleasedStatus] = useState("")
+  const [Price, setPrice] = useState("")
+  const [gamefile, setgamefile] = useState("")
+  const [description, setdescription] = useState("")
+  const [storelink, setstorelink] = useState("")
+  const [coverimg, setcoverimg] = useState("")
+  const [trailer, settrailer] = useState("")
+  const [screenshot1, setscreenshot1] = useState("")
+  const [screenshot2, setscreenshot2] = useState("")
+  const [screenshot3, setscreenshot3] = useState("")
+  const [userid, setuserid] = useState(decoded?.userId);
 
   const handleUpload = () => {
     if (fileinputref.current) {
@@ -13,6 +47,21 @@ export default function AddnewGame() {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const response=await axios.post('api/gameupload',{userid,
+        title,
+        tagline,
+        genre,
+        ReleasedStatus,
+        Price,
+        gamefile,
+        description,
+        storelink,
+        coverimg,
+        trailer,
+        screenshot1,
+        screenshot2,
+        screenshot3,})
+    console.log(response);
   };
   return (
     <main className="text-gray-50">

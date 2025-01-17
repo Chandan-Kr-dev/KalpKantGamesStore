@@ -19,7 +19,7 @@ export default function Navbar() {
       token = window.localStorage.getItem("kkgstoken");
     }
   const decoded = token ? jwtDecode<JwtPayload>(token) : null;
-  console.log(decoded);
+  
 
   const [isMobile, setIsMobile] = useState(false);
   const [openmenu, setopenmenu] = useState(false);
