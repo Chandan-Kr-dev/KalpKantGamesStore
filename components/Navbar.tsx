@@ -19,6 +19,7 @@ export default function Navbar() {
       token = window.localStorage.getItem("kkgstoken");
     }
   const decoded = token ? jwtDecode<JwtPayload>(token) : null;
+
   
 
   const [isMobile, setIsMobile] = useState(false);
@@ -54,9 +55,10 @@ export default function Navbar() {
           <Link href='/' className="md:text-xl text-base font-bold text-zinc-300">
             KalpkantGames
           </Link>
-          <span  className="px-5">
+          {decoded && <span  className="px-5">
             <Link href='/dashboard'>Dashboard</Link>
-          </span>
+          </span>}
+          
         </li>
         <li>
           <h2 className="md:text-4xl text-2xl font-bold uppercase text-white">
