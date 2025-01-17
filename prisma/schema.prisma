@@ -26,3 +26,23 @@ model User{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Games{
+  id Int @default(autoincrement()) @unique
+  title String
+  tagline String
+  genre String
+  ReleasedStatus String @default("Released")
+  Price String @default("0")
+  file String @default("nofile")
+  description String 
+  storelink String @default("null")
+  coverimg String @default("null")
+  trailer String @default("null")
+  Screenshot1 String @default("null")
+  Screenshot2 String @default("null")
+  Screenshot3 String @default("null")
+  
+  
+  userid Int 
+}

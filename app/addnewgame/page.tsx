@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
-import { useRef } from "react";
+import React, { useRef } from "react";
+
 
 export default function addnewGame() {
   const fileinputref = useRef<HTMLInputElement | null>(null);
