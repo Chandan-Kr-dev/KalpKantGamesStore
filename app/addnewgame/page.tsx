@@ -4,7 +4,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 interface JwtPayload {
   userId: string;
   email: string;
@@ -48,6 +48,7 @@ export default function AddnewGame() {
   const [developer, setdeveloper] = useState<string>();
 
   const [uploading, setUploading] = useState<string | null>(null);
+//   const [uploading, setUploading] = useState(false);
 
   const handleUploadClick = (type: string) => {
     const inputRef = fileInputRefs.current[type];
@@ -55,18 +56,23 @@ export default function AddnewGame() {
       inputRef.click();
     }
   };
+  useEffect(()=>{
+    
+  },[coverimg])
 
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
     type: string
   ) => {
+    
     const file = event.target.files?.[0];
+    
     if (file) {
       setUploading(type); // Set the uploading type to show a loading state for that button
       try {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("upload_preset", 'atobrojw'); // Replace with your upload preset
+        formData.append("upload_preset", 'ml_default'); // Replace with your upload preset
         formData.append("cloud_name", 'dr8c1x4ai'); // Replace with your Cloudinary cloud name
 
         const response = await fetch(
@@ -103,9 +109,9 @@ export default function AddnewGame() {
               break;
           }
 
-          console.log(`${type} uploaded:`, imageUrl);
+          alert(`${type} uploaded: ${imageUrl}`);
         } else {
-          console.error(`Failed to upload ${type}`);
+          console.error(`Failed to upload ${type} , why: ${response.statusText}`);
         }
       } catch (error) {
         console.error(`Error uploading ${type}:`, error);
@@ -126,6 +132,7 @@ export default function AddnewGame() {
     setdeveloper(decoded?.username);
     try {
       setisLoading(true);
+      
       const response = await axios.post("api/gameupload", {
         userid,
         developer,
@@ -150,6 +157,7 @@ export default function AddnewGame() {
         window.location.href = "/dashboard";
       }
     } catch (error) {
+        console.error(error);
       setisLoading(false);
     }
   };
@@ -287,7 +295,11 @@ export default function AddnewGame() {
             </div>
             <div className="right  w-full flex flex-col justify-start px-2">
               <div className="image border-2 border-dashed h-60 w-full flex justify-center items-center ">
-                <button
+                {coverimg?(<img
+                  src={coverimg}
+                  alt="cover image"
+                  className="object-cover w-full h-full rounded-lg"
+                />):(<div><button
                   onClick={() => handleUploadClick("coverimg")}
                   className="bg-red-500 px-1 rounded "
                 >
@@ -301,7 +313,9 @@ export default function AddnewGame() {
                   name=""
                   id=""
                   required
-                />
+                /></div>)}
+                
+                
               </div>
               <div className="input flex flex-col py-2">
                 <label htmlFor="">Trailer video</label>
