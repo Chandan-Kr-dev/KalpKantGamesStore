@@ -25,20 +25,21 @@ export default function AddnewGame() {
     
     const fileinputref = useRef<HTMLInputElement | null>(null);
     
-  const [title, settitle] = useState("")
-  const [tagline, settagline] = useState("")
-  const [genre, setgenre] = useState("")
-  const [ReleasedStatus, setReleasedStatus] = useState("")
-  const [Price, setPrice] = useState("")
-  const [gamefile, setgamefile] = useState("")
-  const [description, setdescription] = useState("")
-  const [storelink, setstorelink] = useState("")
-  const [coverimg, setcoverimg] = useState("")
-  const [trailer, settrailer] = useState("")
-  const [screenshot1, setscreenshot1] = useState("")
-  const [screenshot2, setscreenshot2] = useState("")
-  const [screenshot3, setscreenshot3] = useState("")
-  const [userid, setuserid] = useState(decoded?.userId);
+  const [title, settitle] = useState<string>("")
+  const [tagline, settagline] = useState<string>("")
+  const [genre, setgenre] = useState<string>("")
+  const [ReleasedStatus, setReleasedStatus] = useState<string>("")
+  const [Price, setPrice] = useState<string>("")
+  const [gamefile, setgamefile] = useState<string>("")
+  const [description, setdescription] = useState<string>("")
+  const [storelink, setstorelink] = useState<string>("")
+  const [coverimg, setcoverimg] = useState<string>("")
+  const [trailer, settrailer] = useState<string>("")
+  const [screenshot1, setscreenshot1] = useState<string>("")
+  const [screenshot2, setscreenshot2] = useState<string>("")
+  const [screenshot3, setscreenshot3] = useState<string>("")
+  const [userid, setuserid] = useState<string>() ;
+  const [developer, setdeveloper] = useState<string>()
 
   const handleUpload = () => {
     if (fileinputref.current) {
@@ -47,7 +48,14 @@ export default function AddnewGame() {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response=await axios.post('api/gameupload',{userid,
+    setgamefile("EndoftheLine.zip")
+    setcoverimg("endof the line.png")
+    setscreenshot1("ss1.jpg")
+    setscreenshot2("ss1.jpg")
+    setscreenshot3("ss1.jpg")
+    setuserid(decoded?.userId )
+    setdeveloper(decoded?.username)
+    const response=await axios.post('api/gameupload',{userid,developer,
         title,
         tagline,
         genre,
@@ -75,6 +83,8 @@ export default function AddnewGame() {
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">Title</label>
                   <input
+                  value={title}
+                  onChange={e=>settitle(e.target.value)}
                     className="bg-gray-600 px-2 py-1 rounded"
                     type="text"
                     placeholder="Game name"
@@ -83,6 +93,8 @@ export default function AddnewGame() {
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">TagLine</label>
                   <input
+                  value={tagline}
+                  onChange={e=>settagline(e.target.value)}
                     className="bg-gray-600 px-2 py-1 rounded"
                     type="text"
                     placeholder="tagline"
@@ -92,6 +104,8 @@ export default function AddnewGame() {
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">Game genre</label>
                   <select
+                  value={genre}
+                  onChange={e=>setgenre(e.target.value)}
                     className="bg-gray-600 px-2 py-1 rounded"
                     name="role"
                     id="role-select"
@@ -111,6 +125,8 @@ export default function AddnewGame() {
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">Released Status</label>
                   <select
+                  value={ReleasedStatus}
+                  onChange={e=>setReleasedStatus(e.target.value)}
                     className="bg-gray-600 px-2 py-1 rounded"
                     name="role"
                     id="role-select"
@@ -123,6 +139,8 @@ export default function AddnewGame() {
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">Pricing</label>
                   <input
+                  value={Price}
+                  onChange={e=>setPrice(e.target.value)}
                     className="bg-gray-600 px-2 py-1 rounded"
                     type="text"
                     placeholder="Price - $2"
@@ -136,6 +154,7 @@ export default function AddnewGame() {
                     Uplaod Files
                   </button>
                   <input
+
                     ref={fileinputref}
                     className="text-xs hidden"
                     type="file"
@@ -150,6 +169,8 @@ export default function AddnewGame() {
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">Description</label>
                   <textarea
+                  value={description}
+                  onChange={e=>setdescription(e.target.value)}
                     className="bg-gray-600 px-2 py-1 rounded"
                     placeholder="Description"
                     rows={4}
@@ -159,6 +180,8 @@ export default function AddnewGame() {
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">Additional Links</label>
                   <input
+                  value={storelink}
+                  onChange={e=>setstorelink(e.target.value)}
                     className="bg-gray-600 px-2 py-1 rounded"
                     type="text"
                     placeholder="external store links"
@@ -188,11 +211,14 @@ export default function AddnewGame() {
                   type="file"
                   name=""
                   id=""
+                  required
                 />
               </div>
               <div className="input flex flex-col py-2">
                 <label htmlFor="">Trailer video</label>
                 <input
+                value={trailer}
+                onChange={e=>settrailer(e.target.value)}
                   className="bg-gray-600 px-2 py-1 rounded"
                   type="text"
                   placeholder="yotube.com/"

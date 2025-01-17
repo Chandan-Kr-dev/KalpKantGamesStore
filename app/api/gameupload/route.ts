@@ -6,6 +6,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const {
       userid,
+      developer,
       title,
       tagline,
       genre,
@@ -23,6 +24,7 @@ export async function POST(req: Request) {
     const newGame = await db.games.create({
       data: {
         userid,
+        developer,
         title,
         tagline,
         genre,
