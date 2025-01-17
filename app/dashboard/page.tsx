@@ -8,6 +8,9 @@ export default function dashboard() {
       <section className="md:mx-44 mx-10 my-5">
         <div className="dashboard bg-gray-900 shadow-md min-h-[60vh] p-4">
           <h2 className="text-center text-2xl font-semibold">Dashboard</h2>
+          
+
+          
           <div className="totalapps flex justify-between items-center px-20 py-4 border-b-[1px] ">
             <div className="text-center">
               <h2 className="text-3xl ">46 </h2>
@@ -22,6 +25,8 @@ export default function dashboard() {
               <span className="text-xs text-center">Views</span>
             </div>
           </div>
+          <div className=" flex justify-start">
+          <div className="left">
           <div className="p-4">
             <h1>Projects</h1>
             <div className="projects space-y-5">
@@ -159,6 +164,29 @@ export default function dashboard() {
             <Link href='/addnewgame' className="bg-red-600 px-2 rounded py-2">
               Create new Project
             </Link>
+          </div>
+          </div>
+          <div className="right py-4 w-1/2">
+            <h2 className="">Contests</h2>
+            <div className="contests ">
+                <div className="container border-[1px] border-gray-600 p-2">
+                    <div className="header flex justify-start space-x-4 ">
+                        <img className="h-20 w-20 object-contain" src="https://imgs.search.brave.com/FtJ0f51iAzqo8bsJVqsJNiiH-LgnTHdYXOomJwCmL9w/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YS1kcm9wLW9mLXBp/bmstYW5kLXllbGxv/dy1wYWludC1pbi13/YXRlci5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w" alt="" />
+                        <div>
+                            <h2 className="font-semibold text-slate-100">Action Uplaod</h2>
+                            <p className="w-2/3 font-thin text-xs text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, vitae?</p>
+                        </div>
+                    </div>
+                    <div className="about flex justify-between items-center">
+                        <div>
+                        <h2>Total Submissions : <span className="text-purple-600">23</span></h2>
+                        <p>Days left: <span className="text-red-500">12 days</span></p>
+                        </div>
+                        <button className="bg-green-500 px-2 rounded">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+          </div>
           </div>
         </div>
       </section>

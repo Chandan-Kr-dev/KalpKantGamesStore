@@ -111,7 +111,7 @@ export default function addnewGame() {
                   <input
                     className="bg-gray-600 px-2 py-1 rounded"
                     type="text"
-                    placeholder="external links"
+                    placeholder="external store links"
                   />
                 </div>
                 <div className="flex justify-end py-4">
@@ -141,13 +141,55 @@ export default function addnewGame() {
                 />
               </div>
               <div className="input flex flex-col py-2">
-                  <label htmlFor="">Additional Links</label>
+                <label htmlFor="">Trailer video</label>
+                <input
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  type="text"
+                  placeholder="yotube.com/"
+                />
+              </div>
+              <div className="screenshots flex flex-col space-y-4">
+
+              <button
+                    onClick={handleUpload}
+                    className="bg-red-500 px-1 rounded w-fit"
+                  >
+                    Uplaod Screeshot 1
+                  </button>
                   <input
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    type="text"
-                    placeholder="external links"
+                    ref={fileinputref}
+                    className="text-xs hidden"
+                    type="file"
+                    name=""
+                    id=""
                   />
-                </div>
+              <button
+                    onClick={handleUpload}
+                    className="bg-red-500 px-1 rounded w-fit"
+                  >
+                    Uplaod Screeshot 2
+                  </button>
+                  <input
+                    ref={fileinputref}
+                    className="text-xs hidden"
+                    type="file"
+                    name=""
+                    id=""
+                  />
+              <button
+                    onClick={handleUpload}
+                    className="bg-red-500 px-1 rounded w-fit"
+                  >
+                    Uplaod Screeshot 3
+                  </button>
+                  <input
+                    ref={fileinputref}
+                    className="text-xs hidden"
+                    type="file"
+                    name=""
+                    id=""
+                  />
+              </div>
             </div>
           </div>
         </div>

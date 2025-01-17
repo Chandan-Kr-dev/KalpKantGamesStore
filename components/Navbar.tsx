@@ -51,9 +51,9 @@ export default function Navbar() {
             />
           </button>
           <h4>X</h4>
-          <h3 className="md:text-xl text-base font-bold text-zinc-300">
+          <Link href='/' className="md:text-xl text-base font-bold text-zinc-300">
             KalpkantGames
-          </h3>
+          </Link>
           <span  className="px-5">
             <Link href='/dashboard'>Dashboard</Link>
           </span>
