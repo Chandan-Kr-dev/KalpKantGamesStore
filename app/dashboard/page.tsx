@@ -1,7 +1,24 @@
+"use client"
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import { useState,useEffect } from "react";
+
 
 export default function dashboard() {
+    const [IsMobile, setIsMobile] = useState(false)
+    const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768); // Mobile if width is 768px or less
+      };
+
+      useEffect(() => {
+          handleResize(); // Initial check
+          window.addEventListener("resize", handleResize); // Add resize listener
+          return () => window.removeEventListener("resize", handleResize); // Cleanup
+        }, []);
+
+
+        
+
   return (
     <main className="text-zinc-50">
       <Navbar />
@@ -160,11 +177,14 @@ export default function dashboard() {
               </div>
             </div>
           </div>
-          <div className="uplaodnew p-4">
+          {IsMobile?(<h2 className="text-xs">Adding Game is not Allowed in Mobile devices</h2>):(
+            <div className="uplaodnew p-4">
             <Link href='/addnewgame' className="bg-red-600 px-2 rounded py-2">
               Create new Project
             </Link>
           </div>
+          )}
+          
           </div>
           <div className="right py-4 w-1/2">
             <h2 className="">Contests</h2>
