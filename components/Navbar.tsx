@@ -40,7 +40,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="py-5 px-8 border-b-[1px]">
+    <nav className="py-5 px-8 border-b-[1px] text-zinc-50">
       <ul className="flex flex-col md:flex-row justify-between items-center">
         <li className="flex justify-between items-center space-x-2 text-white">
           <button onClick={() => setopenmenu(!openmenu)}>
@@ -54,6 +54,9 @@ export default function Navbar() {
           <h3 className="md:text-xl text-base font-bold text-zinc-300">
             KalpkantGames
           </h3>
+          <span  className="px-5">
+            <Link href='/dashboard'>Dashboard</Link>
+          </span>
         </li>
         <li>
           <h2 className="md:text-4xl text-2xl font-bold uppercase text-white">
