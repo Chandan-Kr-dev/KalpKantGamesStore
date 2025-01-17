@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import React, { useRef } from "react";
 
 
-export default function addnewGame() {
+export default function AddnewGame() {
   const fileinputref = useRef<HTMLInputElement | null>(null);
 
   const handleUpload = () => {
