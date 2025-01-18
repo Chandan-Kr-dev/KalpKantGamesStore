@@ -17,7 +17,7 @@ datasource db {
         
 
 model User{
-  id Int @default(autoincrement())
+  id Int @default(autoincrement()) @id
 
   Name String 
   email String @unique
@@ -28,7 +28,7 @@ model User{
 }
 
 model Games{
-  id Int @default(autoincrement()) @unique
+  id Int @default(autoincrement()) @unique @id
   title String
   tagline String
   genre String

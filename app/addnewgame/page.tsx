@@ -5,6 +5,9 @@ import { jwtDecode } from "jwt-decode";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
+
 interface JwtPayload {
   userId: string;
   email: string;
@@ -48,6 +51,8 @@ export default function AddnewGame() {
   const [developer, setdeveloper] = useState<string>();
 
   const [uploading, setUploading] = useState<string | null>(null);
+
+  // const [CoverImgShow, setCoverImgShow] = useState<string>("")
 //   const [uploading, setUploading] = useState(false);
 
   const handleUploadClick = (type: string) => {
@@ -92,7 +97,7 @@ export default function AddnewGame() {
             case "gamefile":
               setgamefile(imageUrl);
               break;
-            case "coverImg":
+            case "coverimg":
               setcoverimg(imageUrl);
               break;
             case "screenshot1":
@@ -153,8 +158,15 @@ export default function AddnewGame() {
       console.log(response);
       if (response.data.message === "Game Added Successfully") {
         setisLoading(false);
-        alert("Game Added Successfully");
-        window.location.href = "/dashboard";
+        // alert("Game Added Successfully");
+        Toastify({
+          text: "Game Added Successfully",
+          offset: {
+            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        }).showToast();
+        // window.location.href = "/dashboard";
       }
     } catch (error) {
         console.error(error);
@@ -169,7 +181,7 @@ export default function AddnewGame() {
           <h2 className="text-center text-2xl py-2">Add new Game</h2>
           <div className="conta grid grid-cols-2 py-4">
             <div className="left">
-              <form onSubmit={handleSubmit} className="" action="">
+              
                 <div className="input flex flex-col py-2">
                   <label htmlFor="">Title</label>
                   <input
@@ -222,8 +234,8 @@ export default function AddnewGame() {
                     id="role-select"
                   >
                     <option value="">Select Status</option>
-                    <option value="Developer">Released</option>
-                    <option value="user">In Development</option>
+                    <option value="Released">Released</option>
+                    <option value="in development">In Development</option>
                   </select>
                 </div>
                 <div className="input flex flex-col py-2">
@@ -286,12 +298,12 @@ export default function AddnewGame() {
                       Uploading
                     </Button>
                   ) : (
-                    <Button variant="outline" type="submit">
+                    <Button variant="outline" onClick={handleSubmit}>
                       Add Game
                     </Button>
                   )}
                 </div>
-              </form>
+              
             </div>
             <div className="right  w-full flex flex-col justify-start px-2">
               <div className="image border-2 border-dashed h-60 w-full flex justify-center items-center ">
@@ -328,12 +340,15 @@ export default function AddnewGame() {
                 />
               </div>
               <div className="screenshots flex flex-col space-y-4">
+                <div className="flex items-center space-x-20">
                 <button
                   onClick={() => handleUploadClick("screenshot1")}
                   className="bg-red-500 px-1 rounded w-fit"
                 >
                   {uploading === "screenshot1" ? "Uploading image..." : "Upload screenshot1"}
                 </button>
+                {screenshot1&&<span className=""><img className="h-20 w-20" src={screenshot1} alt="" /></span>}
+                </div>
                 <input
                   ref={(el) => {fileInputRefs.current.screenshot1 = el}}
                   onChange={(e) => handleFileChange(e, "screenshot1")}
@@ -342,12 +357,15 @@ export default function AddnewGame() {
                   name=""
                   id=""
                 />
+                <div className="flex items-center space-x-20">
                 <button
                   onClick={() => handleUploadClick("screenshot2")}
                   className="bg-red-500 px-1 rounded w-fit"
                 >
                   {uploading === "screenshot2" ? "Uploading image..." : "Upload screenshot2"}
                 </button>
+                {screenshot2&&<span className=""><img className="h-20 w-20" src={screenshot2} alt="" /></span>}
+                </div>
                 <input
                   ref={(el) => {fileInputRefs.current.screenshot2 = el}}
                   onChange={(e) => handleFileChange(e, "screenshot2")}
@@ -356,12 +374,15 @@ export default function AddnewGame() {
                   name=""
                   id=""
                 />
+                <div className="flex items-center space-x-20">
                 <button
                   onClick={() => handleUploadClick("screenshot3")}
                   className="bg-red-500 px-1 rounded w-fit"
                 >
                   {uploading === "screenshot3" ? "Uploading image..." : "Upload screenshot3"}
                 </button>
+                {screenshot3&&<span className=""><img className="h-20 w-20" src={screenshot3} alt="" /></span>}
+                </div>
                 <input
                   ref={(el) => {fileInputRefs.current.screenshot3 = el}}
                   onChange={(e) => handleFileChange(e, "screenshot3")}
