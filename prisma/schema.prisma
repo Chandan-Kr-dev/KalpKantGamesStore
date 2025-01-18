@@ -27,14 +27,14 @@ model User{
   updatedAt DateTime @updatedAt
 }
 
-model Games{
+model uploadedgames{
   id Int @default(autoincrement()) @unique @id
   title String
   tagline String
   genre String
   ReleasedStatus String @default("Released")
   Price String @default("0")
-  gamefile String @default("nofile")
+  gamelink String @default("nofile")
   description String 
   storelink String @default("null")
   coverimg String @default("null")

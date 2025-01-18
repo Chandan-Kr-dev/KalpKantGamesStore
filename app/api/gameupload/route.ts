@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       genre,
       ReleasedStatus,
       Price,
-      gamefile,
+      gamelink,
       description,
       storelink,
       coverimg,
@@ -21,7 +21,8 @@ export async function POST(req: Request) {
       screenshot2,
       screenshot3,
     } = body;
-    const newGame = await db.games.create({
+
+    const newGame = await db.uploadedgames.create({
       data: {
         userid,
         developer,
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
         genre,
         ReleasedStatus,
         Price,
-        gamefile,
+        gamelink,
         description,
         storelink,
         coverimg,
@@ -50,3 +51,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error }, { status: 500 });
   }
 }
+

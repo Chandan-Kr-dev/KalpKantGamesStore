@@ -1,8 +1,49 @@
 "use client";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
+interface Game{
+  id:number,
+  userid:string,
+        developer:string,
+        title:string,
+        tagline:string,
+        genre:string,
+        ReleasedStatus:string,
+        Price:string,
+        gamelink:string,
+        description:string,
+        storelink:string,
+        coverimg:string,
+        trailer :string,
+        screenshot1 :string,
+        screenshot2 :string,
+        screenshot3 :string,
+
+}
+
 export default function Home() {
+
+  const [games, setgames] = useState<Game[]>([]);
+  // let games:Game[]
+  
+  const [UploadedUrl, setUploadedUrl] = useState("")
+  const [gamename, setgamename] = useState("")
+  const fetchgames=async()=>{
+    try {
+      const response=await axios.get('api/getgames');
+      console.log(response.data);
+      setgames(response.data);
+      
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
   const [text, setText] = useState("");
+
+
 
   const phrases = [
     " Designed for Developers, Loved by Gamers!",
@@ -41,6 +82,7 @@ export default function Home() {
     };
 
     type();
+    fetchgames();
   }, []);
 
   const featured=[
@@ -95,6 +137,15 @@ export default function Home() {
     },
   ]
 
+  const handleDownload = (gamelink:string,gamename:string) => {
+    // Dynamically create the API route for the specific file URL
+
+    const downloadUrl = `/api/download?fileUrl=${encodeURIComponent(gamelink)}&filename=${encodeURIComponent(gamename)}`;
+    window.location.href=downloadUrl;
+    console.log(gamelink,gamename);
+
+  };
+
   return (
     <main className="md:mx-44 mx-10 my-5">
       <section className="flex justify-between flex-col md:flex-row items-center text-white">
@@ -124,23 +175,31 @@ export default function Home() {
           <h1 className="font-semibold text-xl my-3">Top featured </h1>
           <div className="container">
             <div className="flex flex-wrap flex-col md:flex-row  justify-between items-center">
-              {featured.map((game,idx)=>(
+              {games.map((game,idx)=>(
                 <div key={idx} hidden={idx>2} className="game-card  rounded-xl p-2 md:w-[25vw]">
+                  <div className="image-container ">
                 <img
-                  className="rounded-xl"
-                  src={game.img}
+                  className="rounded-xl w-52 h-44 object-cover"
+                  src={game.coverimg}
                   alt=""
                 />
+                </div>
                 <div className="game-card-content flex justify-between my-2 ">
                   <div>
-                    <h2 className="text-lg font-medium">{game.gameName}</h2>
+                    <h2 className="text-lg font-medium">{game.title}</h2>
                     <p className="text-sm font-thin">
-                      {game.slogan}
+                      {game.tagline}
                     </p>
                   </div>
                   
                 </div>
-                <button className="my-3  rounded px-2 py-1  bg-slate-500 hover:bg-slate-400 ">Download</button>
+                <button
+  className="my-3 rounded px-2 py-1 bg-slate-500 hover:bg-slate-400"
+  onClick={() => handleDownload( game.gamelink, game.title)}
+>
+  Download
+</button>
+                
               </div>
               ))}
               

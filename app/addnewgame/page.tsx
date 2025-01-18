@@ -5,8 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import Toastify from 'toastify-js'
-import "toastify-js/src/toastify.css"
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 interface JwtPayload {
   userId: string;
@@ -25,7 +25,7 @@ export default function AddnewGame() {
   const decoded = token ? jwtDecode<JwtPayload>(token) : null;
 
   const fileInputRefs = useRef({
-    gamefile: null,
+    // gamefile: null,
     coverimg: null,
     screenshot1: null,
     screenshot2: null,
@@ -39,7 +39,12 @@ export default function AddnewGame() {
   const [genre, setgenre] = useState<string>("");
   const [ReleasedStatus, setReleasedStatus] = useState<string>("");
   const [Price, setPrice] = useState<string>("");
-  const [gamefile, setgamefile] = useState<string>("");
+  // const [gamefile, setgamefile] = useState<string>("");
+
+  const [gamefile, setgamefile] = useState<File>();
+  const [UploadedUrl, setUploadedUrl] = useState<string>("");
+  const [gamelink, setgamelink] = useState<string>("");
+
   const [description, setdescription] = useState<string>("");
   const [storelink, setstorelink] = useState<string>("");
   const [coverimg, setcoverimg] = useState<string>("");
@@ -53,7 +58,7 @@ export default function AddnewGame() {
   const [uploading, setUploading] = useState<string | null>(null);
 
   // const [CoverImgShow, setCoverImgShow] = useState<string>("")
-//   const [uploading, setUploading] = useState(false);
+  //   const [uploading, setUploading] = useState(false);
 
   const handleUploadClick = (type: string) => {
     const inputRef = fileInputRefs.current[type];
@@ -61,24 +66,60 @@ export default function AddnewGame() {
       inputRef.click();
     }
   };
-  useEffect(()=>{
-    
-  },[coverimg])
+
+  const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setgamefile(e.target.files[0]);
+    }
+  };
+  
+  const handleUpload = async () => {
+    if (!gamefile) {
+      alert("Please select a file to upload.");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("file", gamefile);
+
+      const response = await fetch("/api/gamefileupload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        const downloadUrl = result.url;
+        // Add .zip extension to the download URL
+        const downloadLink = `${downloadUrl}`;
+        setUploadedUrl(downloadLink); 
+         // Use the downloadable URL here
+        alert("File uploaded successfully!");
+      } else {
+        alert(`Error: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("An error occurred during the upload.");
+    }
+  };
+  
 
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
     type: string
   ) => {
-    
     const file = event.target.files?.[0];
-    
+
     if (file) {
       setUploading(type); // Set the uploading type to show a loading state for that button
       try {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("upload_preset", 'ml_default'); // Replace with your upload preset
-        formData.append("cloud_name", 'dr8c1x4ai'); // Replace with your Cloudinary cloud name
+        formData.append("upload_preset", "ml_default"); // Replace with your upload preset
+        formData.append("cloud_name", "dr8c1x4ai"); // Replace with your Cloudinary cloud name
 
         const response = await fetch(
           `https://api.cloudinary.com/v1_1/dr8c1x4ai/image/upload`,
@@ -94,9 +135,9 @@ export default function AddnewGame() {
 
           // Update the specific state based on the type
           switch (type) {
-            case "gamefile":
-              setgamefile(imageUrl);
-              break;
+            // case "gamefile":
+            //   setgamefile(imageUrl);
+            //   break;
             case "coverimg":
               setcoverimg(imageUrl);
               break;
@@ -114,9 +155,17 @@ export default function AddnewGame() {
               break;
           }
 
-          alert(`${type} uploaded: ${imageUrl}`);
+          Toastify({
+            text: "Uploaded Successfully",
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+          }).showToast();
         } else {
-          console.error(`Failed to upload ${type} , why: ${response.statusText}`);
+          console.error(
+            `Failed to upload ${type} , why: ${response.statusText}`
+          );
         }
       } catch (error) {
         console.error(`Error uploading ${type}:`, error);
@@ -135,9 +184,10 @@ export default function AddnewGame() {
     // setscreenshot3("ss1.jpg");
     setuserid(decoded?.userId);
     setdeveloper(decoded?.username);
+    setgamelink(UploadedUrl)
     try {
       setisLoading(true);
-      
+
       const response = await axios.post("api/gameupload", {
         userid,
         developer,
@@ -146,7 +196,7 @@ export default function AddnewGame() {
         genre,
         ReleasedStatus,
         Price,
-        gamefile,
+        gamelink,
         description,
         storelink,
         coverimg,
@@ -161,17 +211,24 @@ export default function AddnewGame() {
         // alert("Game Added Successfully");
         Toastify({
           text: "Game Added Successfully",
-          offset: {
-            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          className: "info",
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
           },
         }).showToast();
-        // window.location.href = "/dashboard";
+        window.location.href = "/dashboard";
       }
     } catch (error) {
-        console.error(error);
+      console.error(error);
       setisLoading(false);
     }
+  };
+
+  const handleDownload = () => {
+    // Dynamically create the API route for the specific file URL
+    const downloadUrl = `/api/download?fileUrl=${encodeURIComponent(UploadedUrl)}&filename=${encodeURIComponent('game')}`;
+    window.location.href=downloadUrl;
+
   };
   return (
     <main className="text-gray-50">
@@ -181,153 +238,174 @@ export default function AddnewGame() {
           <h2 className="text-center text-2xl py-2">Add new Game</h2>
           <div className="conta grid grid-cols-2 py-4">
             <div className="left">
-              
-                <div className="input flex flex-col py-2">
-                  <label htmlFor="">Title</label>
-                  <input
-                    value={title}
-                    onChange={(e) => settitle(e.target.value)}
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    type="text"
-                    placeholder="Game name"
-                  />
-                </div>
-                <div className="input flex flex-col py-2">
-                  <label htmlFor="">TagLine</label>
-                  <input
-                    value={tagline}
-                    onChange={(e) => settagline(e.target.value)}
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    type="text"
-                    placeholder="tagline"
-                    maxLength={50}
-                  />
-                </div>
-                <div className="input flex flex-col py-2">
-                  <label htmlFor="">Game genre</label>
-                  <select
-                    value={genre}
-                    onChange={(e) => setgenre(e.target.value)}
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    name="role"
-                    id="role-select"
-                  >
-                    <option value="">No Genre</option>
-                    <option value="Racing">Racing</option>
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Educational">Educational</option>
-                    <option value="Puzzle">Puzzle</option>
-                    <option value="Survival">Survival</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Simulation">Simulation</option>
-                    <option value="Others">Other</option>
-                  </select>
-                </div>
-                <div className="input flex flex-col py-2">
-                  <label htmlFor="">Released Status</label>
-                  <select
-                    value={ReleasedStatus}
-                    onChange={(e) => setReleasedStatus(e.target.value)}
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    name="role"
-                    id="role-select"
-                  >
-                    <option value="">Select Status</option>
-                    <option value="Released">Released</option>
-                    <option value="in development">In Development</option>
-                  </select>
-                </div>
-                <div className="input flex flex-col py-2">
-                  <label htmlFor="">Pricing</label>
-                  <input
-                    value={Price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    type="text"
-                    placeholder="Price - $2"
-                  />
-                </div>
-                <div className="input flex flex-col py-2">
-                  <button
-                    onClick={() => handleUploadClick("gamefile")}
-                    className="bg-red-500 px-1 rounded w-fit"
-                  >
-                    {uploading === "gamefile" ? "Uploading Game..." : "Upload Game files"}
-                  </button>
-                  <input
-                    ref={(el) => {
-                      fileInputRefs.current.gamefile = el;
-                    }}
-                    onChange={(e) => handleFileChange(e, "gamefile")}
-                    className="text-xs hidden"
-                    type="file"
-                    name=""
-                    id=""
-                  />
-                  <h3 className="text-gray-500 text-sm py-1">
-                    File size limit-1GB
-                  </h3>
-                </div>
-
-                <div className="input flex flex-col py-2">
-                  <label htmlFor="">Description</label>
-                  <textarea
-                    value={description}
-                    onChange={(e) => setdescription(e.target.value)}
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    placeholder="Description"
-                    rows={4}
-                    cols={50}
-                  ></textarea>
-                </div>
-                <div className="input flex flex-col py-2">
-                  <label htmlFor="">Additional Links</label>
-                  <input
-                    value={storelink}
-                    onChange={(e) => setstorelink(e.target.value)}
-                    className="bg-gray-600 px-2 py-1 rounded"
-                    type="text"
-                    placeholder="external store links"
-                  />
-                </div>
-                <div className="flex justify-end py-4">
-                  {isLoading ? (
-                    <Button disabled>
-                      <Loader2 className="animate-spin" />
-                      Uploading
-                    </Button>
-                  ) : (
-                    <Button variant="outline" onClick={handleSubmit}>
-                      Add Game
-                    </Button>
-                  )}
-                </div>
-              
-            </div>
-            <div className="right  w-full flex flex-col justify-start px-2">
-              <div className="image border-2 border-dashed h-60 w-full flex justify-center items-center ">
-                {coverimg?(<img
-                  src={coverimg}
-                  alt="cover image"
-                  className="object-cover w-full h-full rounded-lg"
-                />):(<div><button
-                  onClick={() => handleUploadClick("coverimg")}
-                  className="bg-red-500 px-1 rounded "
+              <div className="input flex flex-col py-2">
+                <label htmlFor="">Title</label>
+                <input
+                  value={title}
+                  onChange={(e) => settitle(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  type="text"
+                  placeholder="Game name"
+                />
+              </div>
+              <div className="input flex flex-col py-2">
+                <label htmlFor="">TagLine</label>
+                <input
+                  value={tagline}
+                  onChange={(e) => settagline(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  type="text"
+                  placeholder="tagline"
+                  maxLength={50}
+                />
+              </div>
+              <div className="input flex flex-col py-2">
+                <label htmlFor="">Game genre</label>
+                <select
+                  value={genre}
+                  onChange={(e) => setgenre(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  name="role"
+                  id="role-select"
                 >
-                  {uploading === "coverimg" ? "Uploading image..." : "Upload cover image"}
+                  <option value="">No Genre</option>
+                  <option value="Racing">Racing</option>
+                  <option value="Action">Action</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Educational">Educational</option>
+                  <option value="Puzzle">Puzzle</option>
+                  <option value="Survival">Survival</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Simulation">Simulation</option>
+                  <option value="Others">Other</option>
+                </select>
+              </div>
+              <div className="input flex flex-col py-2">
+                <label htmlFor="">Released Status</label>
+                <select
+                  value={ReleasedStatus}
+                  onChange={(e) => setReleasedStatus(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  name="role"
+                  id="role-select"
+                >
+                  <option value="">Select Status</option>
+                  <option value="Released">Released</option>
+                  <option value="in development">In Development</option>
+                </select>
+              </div>
+              <div className="input flex flex-col py-2">
+                <label htmlFor="">Pricing</label>
+                <input
+                  value={Price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  type="text"
+                  placeholder="Price - $2"
+                />
+              </div>
+              <div className="input flex flex-col py-2">
+                <button
+                  // onClick={() => handleUploadClick("gamefile")}
+                  onClick={handleUpload}
+                  className="bg-red-500 px-1 rounded w-fit"
+                >
+                  {uploading === "gamefile"
+                    ? "Uploading Game..."
+                    : "Upload Game files"}
                 </button>
                 <input
-                  ref={(el) => {fileInputRefs.current.coverimg = el}}
-                  onChange={(e) => handleFileChange(e, "coverimg")}
-                  className="text-xs hidden"
+                  ref={(el) => {
+                    fileInputRefs.current.gamefile = el;
+                  }}
+                  // onChange={(e) => handleFileChange(e, "gamefile")}
+                  onChange={handleFileChange2}
+                  className="text-xs "
+                  accept=".zip"
                   type="file"
                   name=""
                   id=""
-                  required
-                /></div>)}
-                
-                
+                />
+                {UploadedUrl && (
+        <div>
+          <p>Uploaded File:</p>
+          {/* <a href={`${UploadedUrl}`}  >
+            {UploadedUrl}
+            
+          </a> */}
+          
+        </div>)}
+
+                <h3 className="text-gray-500 text-sm py-1">
+                  File size limit-1GB
+                </h3>
+              </div>
+
+              <div className="input flex flex-col py-2">
+                <label htmlFor="">Description</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setdescription(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  placeholder="Description"
+                  rows={4}
+                  cols={50}
+                ></textarea>
+              </div>
+              <div className="input flex flex-col py-2">
+                <label htmlFor="">Additional Links</label>
+                <input
+                  value={storelink}
+                  onChange={(e) => setstorelink(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  type="text"
+                  placeholder="external store links"
+                />
+              </div>
+              <div className="flex justify-end py-4">
+                {isLoading ? (
+                  <Button disabled>
+                    <Loader2 className="animate-spin" />
+                    Uploading
+                  </Button>
+                ) : (
+                  <Button variant="outline" onClick={handleSubmit}>
+                    Add Game
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="right  w-full flex flex-col justify-start px-2">
+              <div className="image border-2 border-dashed h-60 w-full flex justify-center items-center ">
+                {coverimg ? (
+                  <img
+                    src={coverimg}
+                    alt="cover image"
+                    className="object-cover w-full h-full rounded-lg"
+                  />
+                ) : (
+                  <div>
+                    <button
+                      onClick={() => handleUploadClick("coverimg")}
+                      className="bg-red-500 px-1 rounded "
+                    >
+                      {uploading === "coverimg"
+                        ? "Uploading image..."
+                        : "Upload cover image"}
+                    </button>
+                    <input
+                      ref={(el) => {
+                        fileInputRefs.current.coverimg = el;
+                      }}
+                      onChange={(e) => handleFileChange(e, "coverimg")}
+                      className="text-xs hidden"
+                      type="file"
+                      name=""
+                      id=""
+                      required
+                    />
+                  </div>
+                )}
               </div>
               <div className="input flex flex-col py-2">
                 <label htmlFor="">Trailer video</label>
@@ -341,16 +419,24 @@ export default function AddnewGame() {
               </div>
               <div className="screenshots flex flex-col space-y-4">
                 <div className="flex items-center space-x-20">
-                <button
-                  onClick={() => handleUploadClick("screenshot1")}
-                  className="bg-red-500 px-1 rounded w-fit"
-                >
-                  {uploading === "screenshot1" ? "Uploading image..." : "Upload screenshot1"}
-                </button>
-                {screenshot1&&<span className=""><img className="h-20 w-20" src={screenshot1} alt="" /></span>}
+                  <button
+                    onClick={() => handleUploadClick("screenshot1")}
+                    className="bg-red-500 px-1 rounded w-fit"
+                  >
+                    {uploading === "screenshot1"
+                      ? "Uploading image..."
+                      : "Upload screenshot1"}
+                  </button>
+                  {screenshot1 && (
+                    <span className="">
+                      <img className="h-20 w-20" src={screenshot1} alt="" />
+                    </span>
+                  )}
                 </div>
                 <input
-                  ref={(el) => {fileInputRefs.current.screenshot1 = el}}
+                  ref={(el) => {
+                    fileInputRefs.current.screenshot1 = el;
+                  }}
                   onChange={(e) => handleFileChange(e, "screenshot1")}
                   className="text-xs hidden"
                   type="file"
@@ -358,16 +444,24 @@ export default function AddnewGame() {
                   id=""
                 />
                 <div className="flex items-center space-x-20">
-                <button
-                  onClick={() => handleUploadClick("screenshot2")}
-                  className="bg-red-500 px-1 rounded w-fit"
-                >
-                  {uploading === "screenshot2" ? "Uploading image..." : "Upload screenshot2"}
-                </button>
-                {screenshot2&&<span className=""><img className="h-20 w-20" src={screenshot2} alt="" /></span>}
+                  <button
+                    onClick={() => handleUploadClick("screenshot2")}
+                    className="bg-red-500 px-1 rounded w-fit"
+                  >
+                    {uploading === "screenshot2"
+                      ? "Uploading image..."
+                      : "Upload screenshot2"}
+                  </button>
+                  {screenshot2 && (
+                    <span className="">
+                      <img className="h-20 w-20" src={screenshot2} alt="" />
+                    </span>
+                  )}
                 </div>
                 <input
-                  ref={(el) => {fileInputRefs.current.screenshot2 = el}}
+                  ref={(el) => {
+                    fileInputRefs.current.screenshot2 = el;
+                  }}
                   onChange={(e) => handleFileChange(e, "screenshot2")}
                   className="text-xs hidden"
                   type="file"
@@ -375,24 +469,30 @@ export default function AddnewGame() {
                   id=""
                 />
                 <div className="flex items-center space-x-20">
-                <button
-                  onClick={() => handleUploadClick("screenshot3")}
-                  className="bg-red-500 px-1 rounded w-fit"
-                >
-                  {uploading === "screenshot3" ? "Uploading image..." : "Upload screenshot3"}
-                </button>
-                {screenshot3&&<span className=""><img className="h-20 w-20" src={screenshot3} alt="" /></span>}
+                  <button
+                    onClick={() => handleUploadClick("screenshot3")}
+                    className="bg-red-500 px-1 rounded w-fit"
+                  >
+                    {uploading === "screenshot3"
+                      ? "Uploading image..."
+                      : "Upload screenshot3"}
+                  </button>
+                  {screenshot3 && (
+                    <span className="">
+                      <img className="h-20 w-20" src={screenshot3} alt="" />
+                    </span>
+                  )}
                 </div>
                 <input
-                  ref={(el) => {fileInputRefs.current.screenshot3 = el}}
+                  ref={(el) => {
+                    fileInputRefs.current.screenshot3 = el;
+                  }}
                   onChange={(e) => handleFileChange(e, "screenshot3")}
                   className="text-xs hidden"
                   type="file"
                   name=""
                   id=""
                 />
-                
-                
               </div>
             </div>
           </div>
