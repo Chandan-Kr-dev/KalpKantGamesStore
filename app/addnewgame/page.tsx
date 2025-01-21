@@ -25,7 +25,7 @@ export default function AddnewGame() {
   const decoded = token ? jwtDecode<JwtPayload>(token) : null;
 
   const fileInputRefs = useRef({
-    // gamefile: null,
+    // gamelink: null,
     coverimg: null,
     screenshot1: null,
     screenshot2: null,
@@ -39,11 +39,11 @@ export default function AddnewGame() {
   const [genre, setgenre] = useState<string>("");
   const [ReleasedStatus, setReleasedStatus] = useState<string>("");
   const [Price, setPrice] = useState<string>("");
-  // const [gamefile, setgamefile] = useState<string>("");
+  // const [gamelink, setgamelink] = useState<string>("");
 
-  const [gamefile, setgamefile] = useState<File>();
+  const [gamelink, setgamelink] = useState<string>();
   const [UploadedUrl, setUploadedUrl] = useState<string>("");
-  const [gamelink, setgamelink] = useState<string>("");
+  // const [gamelink, setgamelink] = useState<string>("");
 
   const [description, setdescription] = useState<string>("");
   const [storelink, setstorelink] = useState<string>("");
@@ -67,44 +67,8 @@ export default function AddnewGame() {
     }
   };
 
-  const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setgamefile(e.target.files[0]);
-    }
-  };
   
-  const handleUpload = async () => {
-    if (!gamefile) {
-      alert("Please select a file to upload.");
-      return;
-    }
-
-    try {
-      const formData = new FormData();
-      formData.append("file", gamefile);
-
-      const response = await fetch("/api/gamefileupload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        const downloadUrl = result.url;
-        // Add .zip extension to the download URL
-        const downloadLink = `${downloadUrl}`;
-        setUploadedUrl(downloadLink); 
-         // Use the downloadable URL here
-        alert("File uploaded successfully!");
-      } else {
-        alert(`Error: ${result.message}`);
-      }
-    } catch (error) {
-      console.error("Upload error:", error);
-      alert("An error occurred during the upload.");
-    }
-  };
+  
   
 
   const handleFileChange = async (
@@ -135,8 +99,8 @@ export default function AddnewGame() {
 
           // Update the specific state based on the type
           switch (type) {
-            // case "gamefile":
-            //   setgamefile(imageUrl);
+            // case "gamelink":
+            //   setgamelink(imageUrl);
             //   break;
             case "coverimg":
               setcoverimg(imageUrl);
@@ -177,14 +141,14 @@ export default function AddnewGame() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setgamefile("EndoftheLine.zip");
+    // setgamelink("EndoftheLine.zip");
     // setcoverimg("endof the line.png");
     // setscreenshot1("ss1.jpg");
     // setscreenshot2("ss1.jpg");
     // setscreenshot3("ss1.jpg");
     setuserid(decoded?.userId);
     setdeveloper(decoded?.username);
-    setgamelink(UploadedUrl)
+    // setgamelink(UploadedUrl)
     try {
       setisLoading(true);
 
@@ -224,12 +188,7 @@ export default function AddnewGame() {
     }
   };
 
-  const handleDownload = () => {
-    // Dynamically create the API route for the specific file URL
-    const downloadUrl = `/api/download?fileUrl=${encodeURIComponent(UploadedUrl)}&filename=${encodeURIComponent('game')}`;
-    window.location.href=downloadUrl;
-
-  };
+  
   return (
     <main className="text-gray-50">
       <Navbar />
@@ -305,41 +264,16 @@ export default function AddnewGame() {
                 />
               </div>
               <div className="input flex flex-col py-2">
-                <button
-                  // onClick={() => handleUploadClick("gamefile")}
-                  onClick={handleUpload}
-                  className="bg-red-500 px-1 rounded w-fit"
-                >
-                  {uploading === "gamefile"
-                    ? "Uploading Game..."
-                    : "Upload Game files"}
-                </button>
+                <label htmlFor="">Game link</label>
                 <input
-                  ref={(el) => {
-                    fileInputRefs.current.gamefile = el;
-                  }}
-                  // onChange={(e) => handleFileChange(e, "gamefile")}
-                  onChange={handleFileChange2}
-                  className="text-xs "
-                  accept=".zip"
-                  type="file"
-                  name=""
-                  id=""
+                  value={gamelink}
+                  onChange={(e) => setgamelink(e.target.value)}
+                  className="bg-gray-600 px-2 py-1 rounded"
+                  type="text"
+                  placeholder=""
                 />
-                {UploadedUrl && (
-        <div>
-          <p>Uploaded File:</p>
-          {/* <a href={`${UploadedUrl}`}  >
-            {UploadedUrl}
-            
-          </a> */}
-          
-        </div>)}
-
-                <h3 className="text-gray-500 text-sm py-1">
-                  File size limit-1GB
-                </h3>
               </div>
+              
 
               <div className="input flex flex-col py-2">
                 <label htmlFor="">Description</label>

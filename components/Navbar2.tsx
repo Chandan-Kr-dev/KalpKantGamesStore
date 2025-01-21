@@ -1,3 +1,7 @@
+import Link from "next/link";
+
+
+
 export default function Navbar2() {
   return (
     <nav className="md:mx-44 my-5">
@@ -37,6 +41,7 @@ export default function Navbar2() {
         <li>
           <button>featured</button>
         </li>
+        <Link className="" href='/dashboard'>Dashboard</Link>
       </ul>
     </nav>
   );

@@ -1,23 +1,53 @@
-"use client"
+"use client";
 import Navbar from "@/components/Navbar";
+import axios from "axios";
 import Link from "next/link";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
+interface Game {
+  id: number;
+  userid: string;
+  developer: string;
+  title: string;
+  tagline: string;
+  genre: string;
+  ReleasedStatus: string;
+  Price: string;
+  gamelink: string;
+  description: string;
+  storelink: string;
+  coverimg: string;
+  trailer: string;
+  screenshot1: string;
+  screenshot2: string;
+  screenshot3: string;
+}
 
 export default function dashboard() {
-    const [IsMobile, setIsMobile] = useState<boolean>(false)
-    const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768); // Mobile if width is 768px or less
-      };
+  const [games, setgames] = useState<Game[]>([]);
+  // let games:Game[]
 
-      useEffect(() => {
-          handleResize(); // Initial check
-          window.addEventListener("resize", handleResize); // Add resize listener
-          return () => window.removeEventListener("resize", handleResize); // Cleanup
-        }, []);
+  const fetchgames = async () => {
+    try {
+      const response = await axios.get("api/getgames");
+      console.log(response.data);
+      setgames(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const [IsMobile, setIsMobile] = useState<boolean>(false);
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768); // Mobile if width is 768px or less
+  };
 
-        
+  useEffect(() => {
+    fetchgames();
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize); // Add resize listener
+    return () => window.removeEventListener("resize", handleResize); // Cleanup
+  }, []);
 
   return (
     <main className="text-zinc-50">
@@ -25,9 +55,7 @@ export default function dashboard() {
       <section className="md:mx-44 mx-10 my-5">
         <div className="dashboard bg-gray-900 shadow-md min-h-[60vh] p-4">
           <h2 className="text-center text-2xl font-semibold">Dashboard</h2>
-          
 
-          
           <div className="totalapps flex justify-between items-center px-20 py-4 border-b-[1px] ">
             <div className="text-center">
               <h2 className="text-3xl ">4 </h2>
@@ -42,171 +70,71 @@ export default function dashboard() {
               <span className="text-xs text-center">Views</span>
             </div>
           </div>
-          <div className=" flex justify-start">
+
           <div className="left">
-          <div className="p-4">
-            <h1>Projects</h1>
-            <div className="projects space-y-5">
-              <div className="container flex justify-normal space-x-2 border-[1px] w-fit p-1 border-gray-700">
-                <div className="imagecontainer">
-                  <img
-                    className="h-24 w-24 bg-cover object-contain"
-                    src="https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0"
-                    alt=""
-                  />
-                </div>
-                <div className="space-y-3">
-                  <h2>End of the Line</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Neque, earum.
-                  </p>
-                  <div className="button flex justify-between itmes-center">
-                    <div className="buttons space-x-2">
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        Edit
-                      </button>
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        View
-                      </button>
-                      <button className="bg-red-600 px-2 rounded border-[1px]">
-                        Delete
-                      </button>
+            <div className="p-4">
+              <h1>Projects</h1>
+              <div className="projects space-y-5">
+                {games.map((game, idx) => (
+                  <div
+                    key={idx}
+                    className="container  space-x-5 border-[1px]  p-1 border-gray-700"
+                  >
+                    <div className="flex justify-between items-center">
+
+                    
+                    <div className="flex justify-start items-center my-2  space-x-4">
+                    <div className="imagecontainer ">
+                      <img
+                        className="h-32 w-32 bg-cover object-contain rounded"
+                        src={game.coverimg}
+                        alt=""
+                      />
                     </div>
-                    <h2 className="bg-green-700 px-1 rounded text-gray-200">
-                      Published
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="container flex justify-normal space-x-2 border-[1px] w-fit p-1 border-gray-700">
-                <div className="imagecontainer ">
-                  <img
-                    className="h-24 w-24 bg-cover object-contain"
-                    src="https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0"
-                    alt=""
-                  />
-                </div>
-                <div className="space-y-3">
-                  <h2>End of the Line</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Neque, earum.
-                  </p>
-                  <div className="button flex justify-between itmes-center">
-                    <div className="buttons space-x-2">
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        Edit
-                      </button>
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        View
-                      </button>
-                      <button className="bg-red-600 px-2 rounded border-[1px]">
-                        Delete
-                      </button>
+                    <div>
+                    <h2 className="text-xl font-bold uppercase">{game.title}</h2>
+                    <p className="text-base text-gray-500">{game.tagline}</p>
                     </div>
-                    <h2 className="bg-green-700 px-1 rounded text-gray-200">
-                      Published
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="container flex justify-normal space-x-2 border-[1px] w-fit p-1 border-gray-700">
-                <div className="imagecontainer ">
-                  <img
-                    className="h-24 w-24 bg-cover object-contain"
-                    src="https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0"
-                    alt=""
-                  />
-                </div>
-                <div className="space-y-3">
-                  <h2>End of the Line</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Neque, earum.
-                  </p>
-                  <div className="button flex justify-between itmes-center">
-                    <div className="buttons space-x-2">
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        Edit
-                      </button>
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        View
-                      </button>
-                      <button className="bg-red-600 px-2 rounded border-[1px]">
-                        Delete
-                      </button>
                     </div>
-                    <h2 className="bg-green-700 px-1 rounded text-gray-200">
-                      Published
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="container flex justify-normal space-x-2 border-[1px] w-fit p-1 border-gray-700">
-                <div className="imagecontainer ">
-                  <img
-                    className="h-24 w-24 bg-cover object-contain"
-                    src="https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0"
-                    alt=""
-                  />
-                </div>
-                <div className="space-y-3">
-                  <h2>End of the Line</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Neque, earum.
-                  </p>
-                  <div className="button flex justify-between itmes-center">
-                    <div className="buttons space-x-2">
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        Edit
-                      </button>
-                      <button className="bg-gray-800 px-2 rounded border-[1px]">
-                        View
-                      </button>
-                      <button className="bg-red-600 px-2 rounded border-[1px]">
-                        Delete
-                      </button>
+                    <h2 className=" mx-5 text-gray-400">Downloads:30</h2>
                     </div>
-                    <h2 className="bg-green-700 px-1 rounded text-gray-200">
-                      Published
-                    </h2>
+                    <div className="space-y-3">
+                      
+                      <div className="button flex justify-between items-center">
+                        <div className="buttons space-x-2">
+                          <button className="bg-gray-800 px-2 rounded border-[1px]">
+                            Edit
+                          </button>
+                          <button className="bg-gray-800 px-2 rounded border-[1px]">
+                            View
+                          </button>
+                          <button className="bg-red-600 px-2 rounded border-[1px]">
+                            Delete
+                          </button>
+                        </div>
+                        <h2 className="bg-green-700 px-1 mx-10 rounded text-gray-200">
+                          Published
+                        </h2>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
-          {IsMobile?(<h2 className="text-xs">Adding Game is not Allowed in Mobile devices</h2>):(
-            <div className="uplaodnew p-4">
-            <Link href='/addnewgame' className="bg-red-600 px-2 rounded py-2">
-              Create new Project
-            </Link>
-          </div>
-          )}
-          
-          </div>
-          <div className="right py-4 w-1/2">
-            <h2 className="">Contests</h2>
-            <div className="contests ">
-                <div className="container border-[1px] border-gray-600 p-2">
-                    <div className="header flex justify-start space-x-4 ">
-                        <img className="h-20 w-20 object-contain" src="https://imgs.search.brave.com/FtJ0f51iAzqo8bsJVqsJNiiH-LgnTHdYXOomJwCmL9w/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YS1kcm9wLW9mLXBp/bmstYW5kLXllbGxv/dy1wYWludC1pbi13/YXRlci5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w" alt="" />
-                        <div>
-                            <h2 className="font-semibold text-slate-100">Create Action Game</h2>
-                            <p className="w-2/3 font-thin text-xs text-gray-300">create best action game and become the top downloaded game and get a chance to win a price</p>
-                        </div>
-                    </div>
-                    <div className="about flex justify-between items-center">
-                        <div>
-                        <h2>Total Submissions : <span className="text-purple-600">23</span></h2>
-                        <p>Days left: <span className="text-red-500">12 days</span></p>
-                        </div>
-                        <button className="bg-green-500 px-2 rounded">Apply Now</button>
-                    </div>
-                </div>
-            </div>
-          </div>
+            {IsMobile ? (
+              <h2 className="text-xs">
+                Adding Game is not Allowed in Mobile devices
+              </h2>
+            ) : (
+              <div className="uplaodnew p-4">
+                <Link
+                  href="/addnewgame"
+                  className="bg-red-600 px-2 rounded py-2"
+                >
+                  Create new Project
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </section>

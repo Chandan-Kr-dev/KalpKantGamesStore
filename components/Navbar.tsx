@@ -13,14 +13,12 @@ interface JwtPayload {
 }
 
 export default function Navbar() {
-    let token;
+  let token;
 
-    if (typeof window !== "undefined") {
-      token = window.localStorage.getItem("kkgstoken");
-    }
+  if (typeof window !== "undefined") {
+    token = window.localStorage.getItem("kkgstoken");
+  }
   const decoded = token ? jwtDecode<JwtPayload>(token) : null;
-
-  
 
   const [isMobile, setIsMobile] = useState(false);
   const [openmenu, setopenmenu] = useState(false);
@@ -42,7 +40,7 @@ export default function Navbar() {
 
   return (
     <nav className="py-5 px-8 border-b-[1px] text-zinc-50">
-      <ul className="flex flex-col md:flex-row justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between items-center">
         <li className="flex justify-between items-center space-x-2 text-white">
           <button onClick={() => setopenmenu(!openmenu)}>
             <img
@@ -52,15 +50,15 @@ export default function Navbar() {
             />
           </button>
           <h4>X</h4>
-          <Link href='/' className="md:text-xl text-base font-bold text-zinc-300">
+          <Link
+            href="/"
+            className="md:text-xl text-base font-bold text-zinc-300"
+          >
             KalpkantGames
           </Link>
-          {decoded && <span  className="px-5">
-            <Link href='/dashboard'>Dashboard</Link>
-          </span>}
-          
         </li>
         <li>
+          
           <h2 className="md:text-4xl text-2xl font-bold uppercase text-white">
             Store
           </h2>
@@ -68,7 +66,7 @@ export default function Navbar() {
         {decoded ? (
           <ul>
             {isMobile ? (
-              <li hidden={!openmenu} >
+              <li hidden={!openmenu}>
                 <h2 className="text-gray-300">{decoded.username}</h2>
                 <button
                   className=" px-2 py-1 rounded-xl bg-gray-600 font-bold text-white"
@@ -124,7 +122,7 @@ export default function Navbar() {
             )}
           </ul>
         )}
-      </ul>
+      </div>
     </nav>
   );
 }
