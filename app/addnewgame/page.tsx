@@ -4,7 +4,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
@@ -42,7 +42,7 @@ export default function AddnewGame() {
   // const [gamelink, setgamelink] = useState<string>("");
 
   const [gamelink, setgamelink] = useState<string>();
-  const [UploadedUrl, setUploadedUrl] = useState<string>("");
+  
   // const [gamelink, setgamelink] = useState<string>("");
 
   const [description, setdescription] = useState<string>("");
