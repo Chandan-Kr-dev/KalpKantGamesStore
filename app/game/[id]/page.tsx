@@ -29,7 +29,7 @@ export default function Viewgame() {
   const params = useParams();
   const { id } = params; // Unwrap the id from params
   
-  const [game, setGame] = useState<Game[]>([]);
+  const [game, setGame] = useState<Game|null>(null)
 //   const [error, setError] = useState<string | null>(null);
 
   const fetchgame=async()=>{
@@ -54,24 +54,24 @@ export default function Viewgame() {
             <div >
               <div className="imgcontainer flex justify-center">
 
-                <img className="h-72 w-72 object-contain rounded-md" src={(game as any).coverimg} alt="" />
+                <img className="h-72 w-72 object-contain rounded-md" src={game.coverimg} alt="" />
               </div>
-                <h1 className="text-center text-3xl font-bold uppercase my-3">{(game as any).title}</h1>
-                <p className="text-center text-xl text-gray-400">{(game as any).tagline}</p>
+                <h1 className="text-center text-3xl font-bold uppercase my-3">{game.title}</h1>
+                <p className="text-center text-xl text-gray-400">{game.tagline}</p>
                  <div className="download flex justify-center items-center my-5">
-                  <a href={(game as any).gamelink} className="bg-blue-400 text-black px-2 py-1 rounded font-semibold">Download</a>
+                  <a href={game.gamelink} className="bg-blue-400 text-black px-2 py-1 rounded font-semibold">Download</a>
                  </div>
                  
                  <div className="description  md:mx-32">
                   <h2 className="text-xl font-medium">Description</h2>
-                  <p className="text-gray-400">{(game as any).description}</p>
+                  <p className="text-gray-400">{game.description}</p>
                  </div>
                  <div className="screenshots my-5 md:mx-32">
                   <h2 className="text-xl font-medium">ScreenShots</h2>
                   <div className="screenshot flex justify-evenly items-center flex-wrap space-y-3">
-                    <img className="h-52 w-52 object-contain" src={(game as any).screenshot1} alt="" />
-                    <img className="h-52 w-52 object-contain" src={(game as any).screenshot2} alt="" />
-                    <img className="h-52 w-52 object-contain" src={(game as any).screenshot2} alt="" />
+                    <img className="h-52 w-52 object-contain" src={game.screenshot1} alt="" />
+                    <img className="h-52 w-52 object-contain" src={game.screenshot2} alt="" />
+                    <img className="h-52 w-52 object-contain" src={game.screenshot2} alt="" />
                   </div>
                  </div>
 
