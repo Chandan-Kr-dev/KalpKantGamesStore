@@ -25,7 +25,7 @@ interface Game {
   screenshot3: string;
 }
 
-export default function dashboard() {
+export default function Dashboard() {
   const [games, setgames] = useState<Game[]>([]);
 
   const router = useRouter();
