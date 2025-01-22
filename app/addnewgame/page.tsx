@@ -196,7 +196,7 @@ export default function AddnewGame() {
         <div className="addnew bg-gray-900 shadow-md min-h-[60vh] p-4  ">
           <h2 className="text-center text-2xl py-2">Add new Game</h2>
           <div className="conta grid grid-cols-2 py-4">
-            <form className="left">
+            <form onClick={handleSubmit} className="left">
               <div className="input flex flex-col py-2">
                 <label htmlFor="">Title</label>
                 <input
@@ -303,7 +303,7 @@ export default function AddnewGame() {
                     Uploading
                   </Button>
                 ) : (
-                  <Button variant="outline" onClick={handleSubmit}>
+                  <Button variant="outline" type="submit">
                     Add Game
                   </Button>
                 )}
