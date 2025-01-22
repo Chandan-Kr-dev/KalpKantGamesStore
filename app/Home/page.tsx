@@ -41,7 +41,7 @@ export default function Home() {
   const [text, setText] = useState("");
 
   const phrases = [
-    " Designed for Developers, Loved by Gamers!",
+  
     " Play, Create, Conquer!",
     " Your Gateway to Infinite Adventures!",
   ];
@@ -86,50 +86,7 @@ export default function Home() {
   }
 
 
-  const featured = [
-    {
-      img: "https://imgs.search.brave.com/-Whp7vN2xr3c2keiuSmsMrpUvavi2HH6aS_Na_NDTBE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLWRl/bHRhLWZvcmNlLWNh/cm91c2VsLWRlc2t0/b3AtMTkyMHgxMDgw/LTEyZGMyOTcyMmFk/NS5qcGc_cmVzaXpl/PTEmdz0xMjgwJmg9/NzIwJnF1YWxpdHk9/bWVkaXVt",
-      gameName: "End of the Line",
-      slogan: "play and conquer",
-      price: "$23",
-    },
-    {
-      img: "https://imgs.search.brave.com/-Whp7vN2xr3c2keiuSmsMrpUvavi2HH6aS_Na_NDTBE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLWRl/bHRhLWZvcmNlLWNh/cm91c2VsLWRlc2t0/b3AtMTkyMHgxMDgw/LTEyZGMyOTcyMmFk/NS5qcGc_cmVzaXpl/PTEmdz0xMjgwJmg9/NzIwJnF1YWxpdHk9/bWVkaXVt",
-      gameName: "End of the Line",
-      slogan: "play and conquer",
-      price: "$23",
-    },
-    {
-      img: "https://imgs.search.brave.com/-Whp7vN2xr3c2keiuSmsMrpUvavi2HH6aS_Na_NDTBE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLWRl/bHRhLWZvcmNlLWNh/cm91c2VsLWRlc2t0/b3AtMTkyMHgxMDgw/LTEyZGMyOTcyMmFk/NS5qcGc_cmVzaXpl/PTEmdz0xMjgwJmg9/NzIwJnF1YWxpdHk9/bWVkaXVt",
-      gameName: "End of the Line",
-      slogan: "play and conquer",
-      price: "$23",
-    },
-    {
-      img: "https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0",
-      gameName: "End of the Line",
-      slogan: "play and conquer",
-      price: "$23",
-    },
-    {
-      img: "https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0",
-      gameName: "End of the Line",
-      slogan: "play and conquer",
-      price: "$23",
-    },
-    {
-      img: "https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0",
-      gameName: "End of the Line",
-      slogan: "play and conquer",
-      price: "$23",
-    },
-    {
-      img: "https://imgs.search.brave.com/OOBPbaUGiiad0CdRX6HNlY5TpOq24DMgxaA9RimJZ0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLXBh/dGgtb2YtZXhpbGUt/Mi1jYXJvdXNlbC1k/ZXNrdG9wLTE5MjB4/MTA4MC05OTc1ODky/M2E2NzYuanBlZz9y/ZXNpemU9MSZ3PTEy/ODAmaD03MjAmcXVh/bGl0eT1tZWRpdW0",
-      gameName: "End of the Line",
-      slogan: "play and conquer",
-      price: "$23",
-    },
-  ];
+  
 
   
   return (
@@ -151,18 +108,12 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="UserChoices text-white my-20 ">
-        <div className="coonstiner flex flex-col md:flex-row  justify-evenly items-center">
-          <div className="box bg-green-300 h-44 w-64 rounded-xl "></div>
-          <div className="box bg-green-300 h-44 w-64 rounded-xl"></div>
-          <div className="box bg-green-300 h-44 w-64 rounded-xl"></div>
-        </div>
-      </section>
+      
       <section className="topfeatured text-white my-20 ">
         <div>
-          <h1 className="font-semibold text-xl my-3">Top featured </h1>
-          <div className="container">
-            <div className="flex flex-wrap flex-col md:flex-row  justify-between items-center">
+          <h1 className="font-semibold text-xl my-3"> My games</h1>
+          <div className="container ">
+            <div className="flex flex-wrap flex-col md:flex-row  justify-evenly items-center">
               {games.map((game, idx) => (
                 <div
                   key={idx}
@@ -194,7 +145,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="freegames text-white  my-20">
+      {/* <section className="freegames text-white  my-20">
         <h1 className="font-semibold text-xl my-3">Top Releases </h1>
         <div className="container flex flex-col md:flex-row justify-between items-center bg-slate-600 p-5 rounded-xl">
           <button className="gamecard hover:border-2 px-2 py-1 rounded-xl hover:shadow-md md:w-[30vw] md:h-[50vh]">
@@ -276,7 +227,7 @@ export default function Home() {
             </p>
           </button>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

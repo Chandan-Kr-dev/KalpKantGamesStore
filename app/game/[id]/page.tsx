@@ -30,11 +30,37 @@ export default function Viewgame() {
         
 
         {game ? (
-          <div className="flex justify-center items-center">
+          <div className=" ">
             <div >
+              <div className="imgcontainer flex justify-center">
+
                 <img className="h-72 w-72 object-contain rounded-md" src={game.coverimg} alt="" />
+              </div>
                 <h1 className="text-center text-3xl font-bold uppercase my-3">{game.title}</h1>
                 <p className="text-center text-xl text-gray-400">{game.tagline}</p>
+                 <div className="download flex justify-center items-center my-5">
+                  <a href={game.gamelink} className="bg-blue-400 text-black px-2 py-1 rounded font-semibold">Download</a>
+                 </div>
+                 {/* {game.trailer &&(
+
+                 <div className="trailer mx-32">
+                  <h2 className="text-xl font-medium">Trailer</h2>
+                  
+                  <video className="h-52 w-52 object-contain" src={game.trailer}></video>
+                 </div>
+                 )} */}
+                 <div className="description  md:mx-32">
+                  <h2 className="text-xl font-medium">Description</h2>
+                  <p className="text-gray-400">{game.description}</p>
+                 </div>
+                 <div className="screenshots my-5 md:mx-32">
+                  <h2 className="text-xl font-medium">ScreenShots</h2>
+                  <div className="screenshot flex justify-evenly items-center flex-wrap space-y-3">
+                    <img className="h-52 w-52 object-contain" src={game.screenshot1} alt="" />
+                    <img className="h-52 w-52 object-contain" src={game.screenshot2} alt="" />
+                    <img className="h-52 w-52 object-contain" src={game.screenshot2} alt="" />
+                  </div>
+                 </div>
 
             </div>
           </div>

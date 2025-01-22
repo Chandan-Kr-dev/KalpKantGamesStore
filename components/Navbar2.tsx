@@ -1,12 +1,13 @@
-import Link from "next/link";
+// import Link from "next/link";
 
 
 
 export default function Navbar2() {
+  
   return (
     <nav className="md:mx-44 my-5">
       <ul className="flex flex-col md:flex-row justify-normal items-center space-x-8 text-white">
-        <li className="bg-gray-900 px-2 py-1 rounded-3xl flex justify-center items-center">
+        {/* <li className="bg-gray-900 px-2 py-1 rounded-3xl flex justify-center items-center">
           <input className="outline-none bg-gray-900 px-2 py-1" type="text" />
           <button className="">
             <span className="">
@@ -34,14 +35,14 @@ export default function Navbar2() {
               </svg>
             </span>
           </button>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <button>Categories</button>
         </li>
         <li>
           <button>featured</button>
-        </li>
-        <Link className="" href='/dashboard'>Dashboard</Link>
+        </li> */}
+        {/* <Link className="" href='/dashboard'>Dashboard</Link> */}
       </ul>
     </nav>
   );

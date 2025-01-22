@@ -2,7 +2,9 @@
 import Navbar from "@/components/Navbar";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+
 
 interface Game {
   id: number;
@@ -25,6 +27,8 @@ interface Game {
 
 export default function dashboard() {
   const [games, setgames] = useState<Game[]>([]);
+
+  const router = useRouter();
   // let games:Game[]
 
   const fetchgames = async () => {
@@ -48,6 +52,11 @@ export default function dashboard() {
     window.addEventListener("resize", handleResize); // Add resize listener
     return () => window.removeEventListener("resize", handleResize); // Cleanup
   }, []);
+
+  const sendid=(id:number)=>{
+    console.log(id);
+    router.push(`/game/${id}`)
+  }
 
   return (
     <main className="text-zinc-50">
@@ -105,9 +114,9 @@ export default function dashboard() {
                           <button className="bg-gray-800 px-2 rounded border-[1px]">
                             Edit
                           </button>
-                          <button className="bg-gray-800 px-2 rounded border-[1px]">
+                          <button onClick={()=>sendid(game.id)} className="bg-gray-800 px-2 rounded border-[1px]">
                             View
-                          </button>
+                          </button >
                           <button className="bg-red-600 px-2 rounded border-[1px]">
                             Delete
                           </button>
