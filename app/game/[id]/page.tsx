@@ -2,15 +2,34 @@
 
 import Navbar from "@/components/Navbar";
 import axios from "axios";
-import { Params } from "next/dist/server/request/params";
+
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+interface Game {
+  id: number;
+  userid: string;
+  developer: string;
+  title: string;
+  tagline: string;
+  genre: string;
+  ReleasedStatus: string;
+  Price: string;
+  gamelink: string;
+  description: string;
+  storelink: string;
+  coverimg: string;
+  trailer: string;
+  screenshot1: string;
+  screenshot2: string;
+  screenshot3: string;
+}
+
 export default function Viewgame() {
-  const params = useParams<Params>();
+  const params = useParams();
   const { id } = params; // Unwrap the id from params
   
-  const [game, setGame] = useState<any>(null);
+  const [game, setGame] = useState<Game[]>([]);
 //   const [error, setError] = useState<string | null>(null);
 
   const fetchgame=async()=>{
