@@ -58,6 +58,12 @@ export default function Dashboard() {
     router.push(`/game/${id}`)
   }
 
+  const deletegame=(id:number)=>{
+    console.log(id)
+    const response=axios.post('/api/deletegame',{id})
+    window.location.reload()
+  }
+
   return (
     <main className="text-zinc-50">
       <Navbar />
@@ -117,7 +123,7 @@ export default function Dashboard() {
                           <button onClick={()=>sendid(game.id)} className="bg-gray-800 px-2 rounded border-[1px]">
                             View
                           </button >
-                          <button className="bg-red-600 px-2 rounded border-[1px]">
+                          <button onClick={()=>deletegame(game.id)} className="bg-red-600 px-2 rounded border-[1px]">
                             Delete
                           </button>
                         </div>

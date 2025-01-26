@@ -45,7 +45,7 @@ const [Loader, setLoader] = useState(false)
   };
   return (
     <main className="p-10 min-h-[40vh] w-full bg-slate-800">
-      <div className="conatiner md:grid md:grid-cols-3 flex flex-col space-y-5 md:space-x-10">
+      <div className="conatiner md:grid md:grid-cols-3 flex flex-col  space-y-5 md:space-x-10">
         
         {/* <div className="center  h-full  w-full">
           <div className="about us flex flex-col ">
