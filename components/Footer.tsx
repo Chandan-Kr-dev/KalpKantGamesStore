@@ -44,8 +44,8 @@ const [Loader, setLoader] = useState(false)
         
   };
   return (
-    <main className="p-10 min-h-[40vh] w-full bg-slate-800">
-      <div className="conatiner md:grid md:grid-cols-3 flex flex-col  space-y-5 md:space-x-10">
+    <main className="">
+      <div className="conatiner md:grid md:grid-cols-3 flex flex-col  space-y-5 md:space-x-10 bg-slate-800 p-10 min-h-[40vh] w-full ">
         
         {/* <div className="center  h-full  w-full">
           <div className="about us flex flex-col ">
@@ -119,6 +119,9 @@ const [Loader, setLoader] = useState(false)
           </div>
         </div>
       </div>
+        <div className="copyright text-center text-white bg-slate-600">
+          <h1>&copy; copyright to Chandan Kumar</h1>
+        </div>
     </main>
   );
 }
