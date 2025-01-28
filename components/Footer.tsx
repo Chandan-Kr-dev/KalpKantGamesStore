@@ -6,6 +6,7 @@ import emailjs from "@emailjs/browser"
 import { useRef ,useState} from "react";
 import { Loader2 } from "lucide-react";
 export default function Footer() {
+  
 
 const [Loader, setLoader] = useState(false)
   const form = useRef(null);
@@ -19,11 +20,11 @@ const [Loader, setLoader] = useState(false)
     }
     emailjs
         .sendForm(
-          `${process.env.EMAILJS_SERVICE_ID}`,
-          `${process.env.EMAILJS_TEMPLATE_ID}`,
+          `${process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID}`,
+          `${process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID}`,
           form.current,
           
-            process.env.EMAILJS_PUBLIC_KEY,
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
           
         )
         .then(
@@ -120,7 +121,7 @@ const [Loader, setLoader] = useState(false)
         </div>
       </div>
         <div className="copyright text-center text-white bg-slate-600">
-          <h1>&copy; copyright to Chandan Kumar</h1>
+          <h1>&copy; All Rights reserved to Chandan Kumar</h1>
         </div>
     </main>
   );

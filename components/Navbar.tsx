@@ -45,7 +45,7 @@ export default function Navbar() {
           <button onClick={() => setopenmenu(!openmenu)}>
             <img
               className="h-10 w-10  bg-cover rounded-full"
-              src="https://images.unsplash.com/photo-1732287931034-c4cc1b06de6a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8"
+              src="https://res.cloudinary.com/dcn17cw7n/image/upload/v1738083613/logo-new_yapqgr.png"
               alt=""
             />
           </button>

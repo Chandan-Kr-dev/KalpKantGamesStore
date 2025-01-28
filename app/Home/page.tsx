@@ -103,7 +103,7 @@ export default function Home() {
         <div className="imagecontaner  ">
           <img
             className="rounded-xl"
-            src="https://imgs.search.brave.com/-Whp7vN2xr3c2keiuSmsMrpUvavi2HH6aS_Na_NDTBE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4y/LnVucmVhbGVuZ2lu/ZS5jb20vZWdzLWRl/bHRhLWZvcmNlLWNh/cm91c2VsLWRlc2t0/b3AtMTkyMHgxMDgw/LTEyZGMyOTcyMmFk/NS5qcGc_cmVzaXpl/PTEmdz0xMjgwJmg9/NzIwJnF1YWxpdHk9/bWVkaXVt"
+            src="https://res.cloudinary.com/dcn17cw7n/image/upload/v1738083613/logo-new_yapqgr.png"
             alt=""
           />
         </div>
@@ -118,11 +118,11 @@ export default function Home() {
                 <div
                   key={idx}
                   hidden={idx > 3}
-                  className="game-card  rounded-xl p-2 md:w-[25vw]"
+                  className="game-card   rounded-xl p-2 md:w-[25vw]"
                 >
                   <button onClick={()=>sendid(game.id)} className="image-container ">
                     <img
-                      className="rounded-xl w-52 h-44 object-cover"
+                      className="rounded-xl w-52 h-44 object-cover hover:-translate-y-1 transition-all "
                       src={game.coverimg}
                       alt=""
                     />
@@ -136,6 +136,7 @@ export default function Home() {
                   <a 
                     className="my-3 rounded px-2 py-1 bg-slate-500 hover:bg-slate-400"
                     href={game.gamelink}
+                    target="_blank"
                   >
                     Download
                   </a>
