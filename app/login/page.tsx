@@ -18,7 +18,7 @@ export default function Login() {
         try {
           setisLoading(true)
           const response=await axios.post('api/auth/Login',{email,password});
-          console.log(response)
+          
           if(response.data.message==="Success"){
             setisLoading(false)
             window.localStorage.setItem('kkgstoken',response.data.token)

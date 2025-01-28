@@ -59,8 +59,12 @@ export default function Dashboard() {
   }
 
   const deletegame=(id:number)=>{
-    console.log(id)
+    
     const response=axios.post('/api/deletegame',{id})
+    if(response){
+      console.log("Deleted Successfully")
+      console.log(response)
+    }
     window.location.reload()
   }
 
