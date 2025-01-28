@@ -195,7 +195,7 @@ export default function AddnewGame() {
       <section className="md:mx-44 mx-10 my-5">
         <div className="addnew bg-gray-900 shadow-md min-h-[60vh] p-4  ">
           <h2 className="text-center text-2xl py-2">Add new Game</h2>
-          <div className="conta grid grid-cols-2 py-4">
+          <form onSubmit={handleSubmit} className="conta grid grid-cols-2 py-4">
             <div  className="left">
               <div className="input flex flex-col py-2">
                 <label htmlFor="">Title</label>
@@ -296,18 +296,7 @@ export default function AddnewGame() {
                   placeholder="external store links"
                 />
               </div>
-              <div className="flex justify-end py-4">
-                {isLoading ? (
-                  <Button disabled>
-                    <Loader2 className="animate-spin" />
-                    Uploading
-                  </Button>
-                ) : (
-                  <Button variant="outline" onClick={handleSubmit}>
-                    Add Game
-                  </Button>
-                )}
-              </div>
+              
             </div>
             <div className="right  w-full flex flex-col justify-start px-2">
               <div className="image border-2 border-dashed h-60 w-full flex justify-center items-center ">
@@ -429,7 +418,20 @@ export default function AddnewGame() {
                 />
               </div>
             </div>
-          </div>
+            <div className="flex justify-end py-4">
+                {isLoading ? (
+                  <Button disabled>
+                    <Loader2 className="animate-spin" />
+                    Uploading
+                  </Button>
+                ) : (
+                  <Button variant="outline" type="submit">
+                    Add Game
+                  </Button>
+                )}
+              </div>
+
+          </form>
         </div>
       </section>
     </main>
