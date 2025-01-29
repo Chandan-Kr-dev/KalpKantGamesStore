@@ -108,13 +108,13 @@ const [Loader, setLoader] = useState(false)
           <div className="socialLinks flex flex-col  ">
             <h1 className="text-gray-500 font-semibold">Social Links</h1>
             
-            <a className="text-gray-200" href="">
+            <a className="text-gray-200" href="" target="_blank">
               Youtube
             </a>
-            <a className="text-gray-200" href="">
+            <a className="text-gray-200" href="https://www.instagram.com/kalpkantproductions?igsh=OGE2OHlicTRmMGx3" target="_blank">
               Instagram
             </a>
-            <a className="text-gray-200" href="">
+            <a className="text-gray-200" href="https://discord.gg/cgEeMKRx" target="_blank">
               Discord
             </a>
           </div>
