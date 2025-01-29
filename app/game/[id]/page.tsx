@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface Game {
-  id: number;
+  id: string;
   userid: string;
   developer: string;
   title: string;

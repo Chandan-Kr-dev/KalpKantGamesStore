@@ -12,7 +12,7 @@ export async function GET(req:Request,context:{params:Promise<{id:string}>} ){
 
         const game=await db.uploadedgames.findUnique({
             where:{
-                id:parseInt(id,10),
+                id:id,
             }
         });
 
