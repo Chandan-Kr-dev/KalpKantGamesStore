@@ -103,8 +103,8 @@ export default function Home() {
         <div className="imagecontaner  ">
           <img
             className="rounded-xl"
-            src="https://res.cloudinary.com/dcn17cw7n/image/upload/v1738083613/logo-new_yapqgr.png"
-            alt=""
+            src="https://i.postimg.cc/tTQ1fhPs/logo-new.png"
+            alt="logo"
           />
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function Home() {
                 <div
                   key={idx}
                   hidden={idx > 3}
-                  className="game-card   rounded-xl p-2 md:w-[25vw]"
+                  className="game-card   rounded-xl p-2 md:w-[25vw] w-[80vw]"
                 >
                   <button onClick={()=>sendid(game.id)} className="image-container ">
                     <img
