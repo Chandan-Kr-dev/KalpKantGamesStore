@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kalpkant Games Store",
   description: "Your Gateway to infinite adventures",
+  other:{
+    "google-adsense-account": "ca-pub-1674197696050997"
+  }
 };
 
 export default function RootLayout({
