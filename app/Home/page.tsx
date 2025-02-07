@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+<meta name="google-adsense-account" content="ca-pub-1674197696050997"></meta>
 
 interface Game {
   id: number;
