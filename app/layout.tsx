@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   title: "Kalpkant Games Store",
   description: "Your Gateway to infinite adventures",
   other:{
-    "google-adsense-account": "ca-pub-1674197696050997"
+    "google-adsense-account": "ca-pub-1674197696050997",
+    "google-site-verification" :"8eSvh0en8XRrVhaOShyVibev8sB4zX7D4hdqlFBx2qw" 
   }
 };
 
