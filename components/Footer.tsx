@@ -108,7 +108,7 @@ const [Loader, setLoader] = useState(false)
           <div className="socialLinks flex flex-col  ">
             <h1 className="text-gray-500 font-semibold">Social Links</h1>
             
-            <a className="text-gray-200" href="" target="_blank">
+            <a className="text-gray-200" href="https://youtube.com/@kalpkantgamesproduction?si=U10MI9n6MZ81C0YO" target="_blank">
               Youtube
             </a>
             <a className="text-gray-200" href="https://www.instagram.com/kalpkantproductions?igsh=OGE2OHlicTRmMGx3" target="_blank">
