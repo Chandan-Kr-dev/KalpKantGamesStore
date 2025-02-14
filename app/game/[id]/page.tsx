@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import axios from "axios";
+import Image from "next/image";
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -25,6 +26,8 @@ interface Game {
   screenshot3: string;
 }
 
+
+
 export default function Viewgame() {
   const params = useParams();
   const { id } = params; // Unwrap the id from params
@@ -42,6 +45,8 @@ export default function Viewgame() {
     fetchgame()
   },[id])
 
+  
+
   return(
     <main>
         <Navbar/>
@@ -54,7 +59,8 @@ export default function Viewgame() {
             <div >
               <div className="imgcontainer flex justify-center">
 
-                <img className="h-72 w-72 object-contain rounded-md" src={game.coverimg} alt="" />
+                <Image src={game.coverimg} alt={game.title} height={200} width={300}/>
+                
               </div>
                 <h1 className="text-center text-3xl font-bold uppercase my-3">{game.title}</h1>
                 <p className="text-center text-xl text-gray-400">{game.tagline}</p>

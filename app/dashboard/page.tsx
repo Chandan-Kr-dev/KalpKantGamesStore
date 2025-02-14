@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -104,11 +105,8 @@ export default function Dashboard() {
                     
                     <div className="flex justify-start items-center my-2  space-x-4">
                     <div className="imagecontainer ">
-                      <img
-                        className="h-32 w-32 bg-cover object-contain rounded"
-                        src={game.coverimg}
-                        alt=""
-                      />
+                      <Image src={game.coverimg} alt={game.title} height={200} width={200}/>
+                      
                     </div>
                     <div>
                     <h2 className="text-xl font-bold uppercase">{game.title}</h2>

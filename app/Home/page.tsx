@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -102,11 +103,8 @@ export default function Home() {
           </h2>
         </div>
         <div className="imagecontaner  ">
-          <img
-            className="rounded-xl"
-            src="https://i.postimg.cc/tTQ1fhPs/logo-new.png"
-            alt="logo"
-          />
+          <Image src="https://i.postimg.cc/tTQ1fhPs/logo-new.png" alt="Logo" width={500} height={100} />
+          
         </div>
       </section>
       
@@ -122,11 +120,8 @@ export default function Home() {
                   className="game-card   rounded-xl p-2 md:w-[25vw] w-[80vw]"
                 >
                   <button onClick={()=>sendid(game.id)} className="image-container ">
-                    <img
-                      className="rounded-xl w-52 h-44 object-cover hover:-translate-y-1 transition-all "
-                      src={game.coverimg}
-                      alt=""
-                    />
+                    <Image src={game.coverimg} alt={game.title} height={200} width={200}/>
+                    
                   </button>
                   <div className="game-card-content flex justify-between my-2 ">
                     <div>

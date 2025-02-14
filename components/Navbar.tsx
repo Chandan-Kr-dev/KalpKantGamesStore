@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import React, {  useState } from "react";
 
@@ -43,11 +44,8 @@ export default function Navbar() {
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="flex justify-between items-center space-x-2 text-white">
           <button onClick={() => setopenmenu(!openmenu)}>
-            <img
-              className="h-10 w-10  bg-cover rounded-full"
-              src="https://i.postimg.cc/tTQ1fhPs/logo-new.png"
-              alt="logo"
-            />
+            <Image src="https://i.postimg.cc/tTQ1fhPs/logo-new.png" alt="Logo" width={50} height={50} />
+            
           </button>
           <h4>X</h4>
           <Link
