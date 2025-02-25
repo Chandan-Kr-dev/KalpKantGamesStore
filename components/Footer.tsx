@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css"
 import emailjs from "@emailjs/browser"
 import { useRef ,useState} from "react";
 import { Loader2 } from "lucide-react";
+import Swal from 'sweetalert2'
 export default function Footer() {
   
 
@@ -30,10 +31,20 @@ const [Loader, setLoader] = useState(false)
         .then(
           () => {
             setLoader(false)
+            Swal.fire({
+              title: 'Thank you for your message!',
+              text: 'We will get back to you soon.',
+              icon:'success',
+            })
           },
           (error) => {
             setLoader(false)
             console.error("FAILED...", error);
+            Swal.fire({
+              title: 'Failed to send message!',
+              text: 'Please try again later.',
+              icon:'error',
+            })
           }
         );
 
@@ -97,7 +108,7 @@ const [Loader, setLoader] = useState(false)
               ):(
                 <Button disabled>
                 <Loader2 className="animate-spin" />
-                Signing in
+                Sending
               </Button>
               )}
               
