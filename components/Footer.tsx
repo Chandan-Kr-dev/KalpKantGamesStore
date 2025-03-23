@@ -7,7 +7,9 @@ import { useRef ,useState} from "react";
 import { Loader2 } from "lucide-react";
 import Swal from 'sweetalert2'
 export default function Footer() {
-  
+  const [Name, setName] = useState("")  
+  const [email, setemail] = useState("")
+  const [Message, setMessage] = useState("")
 
 const [Loader, setLoader] = useState(false)
   const form = useRef(null);
@@ -15,6 +17,16 @@ const [Loader, setLoader] = useState(false)
   const handlesubmit = (e:React.FormEvent) => {
     setLoader(true)
     e.preventDefault();
+
+    if(!Name.trim() || !email.trim() || !Message.trim()){
+      Swal.fire({
+        title: 'Please fill all required fields!',
+        icon:'error',
+      })
+      setLoader(false)
+      return;
+    }
+
     if(!form.current){
       setLoader(false)
       return
@@ -50,7 +62,7 @@ const [Loader, setLoader] = useState(false)
 
     
 
-    // Use toast.promise to handle the states
+    
     
 
         
@@ -84,20 +96,24 @@ const [Loader, setLoader] = useState(false)
                 className="col-span-3 md:w-1/3 w-2/3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="Name"
                 name="from_name"
-                
+                value={Name}
+                onChange={e=>setName(e.target.value)}
                 placeholder="Name"
               />
               <input
                 className="col-span-3 md:w-2/3 bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 type="email"
                 name="from_email"
-                
+                value={email}
+                onChange={e=>setemail(e.target.value)}
                 placeholder="Email"
               />
               <textarea
               name="message"
                 className=" bg-slate-700 text-white px-2 py-1 font-semibold rounded-xl outline-none shadow-slate-500 shadow-inner"
                 placeholder="Message"
+                value={Message}
+                onChange={e=>setMessage(e.target.value)}
                 rows={4}
                 cols={30}
               ></textarea>
