@@ -11,6 +11,8 @@ export default function Footer() {
   const [email, setemail] = useState("")
   const [Message, setMessage] = useState("")
 
+  const [defaultInput, setdefaultInput] = useState("")
+
 const [Loader, setLoader] = useState(false)
   const form = useRef(null);
 
@@ -18,6 +20,11 @@ const [Loader, setLoader] = useState(false)
     setLoader(true)
     e.preventDefault();
 
+    if(defaultInput) {
+     
+      setLoader(false)
+      return;
+    }
     if(!Name.trim() || !email.trim() || !Message.trim()){
       Swal.fire({
         title: 'Please fill all required fields!',
@@ -117,6 +124,8 @@ const [Loader, setLoader] = useState(false)
                 rows={4}
                 cols={30}
               ></textarea>
+              {/* honepot input field */}
+              <input className="hidden" type="text" value={defaultInput} onChange={e=>setdefaultInput(e.target.value)} />
               {!Loader?(
                 <Button  variant="outline" type="submit">
                 Send Message
