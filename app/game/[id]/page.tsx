@@ -89,7 +89,7 @@ export default function Viewgame() {
                   Download
                 </a>
               </div>
-              <div className="border-2 rounded-xl  border-gray-500 bg-gray-600 md:h-[50vh] h-[20vh] md:w-[50vw] w-full mx-auto md:my-5 ">
+              {game.trailer?(<div className="border-2 rounded-xl  border-gray-500 bg-gray-600 md:h-[50vh] h-[20vh] md:w-[50vw] w-full mx-auto md:my-5 ">
                 {Trailerurl && (
                   <iframe
                     src={Trailerurl}
@@ -99,7 +99,8 @@ export default function Viewgame() {
                     className="md:h-[50vh] h-[20vh] md:w-[50vw] w-full rounded-xl p-2"
                   ></iframe>
                 )}
-              </div>
+              </div>):(null)}
+              
 
               <div className="description  md:mx-32 my-5">
                 <h2 className="text-xl font-medium">Description</h2>

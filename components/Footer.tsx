@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css"
 import emailjs from "@emailjs/browser"
 import { useRef ,useState} from "react";
 import { Loader2 } from "lucide-react";
+import { FaYoutube } from "react-icons/fa";
 import Swal from 'sweetalert2'
 export default function Footer() {
   const [Name, setName] = useState("")  
@@ -144,20 +145,20 @@ const [Loader, setLoader] = useState(false)
           <div className="socialLinks flex flex-col  ">
             <h1 className="text-gray-500 font-semibold">Social Links</h1>
             
-            <a className="text-gray-200" href="https://youtube.com/@kalpkantgamesproduction?si=U10MI9n6MZ81C0YO" target="_blank">
-              Youtube
+            <a className="text-gray-200 hover:bg-gray-500 w-fit px-2 py-1 rounded-xl" href="https://youtube.com/@kalpkantgamesproduction?si=U10MI9n6MZ81C0YO" target="_blank">
+              Youtube 
             </a>
-            <a className="text-gray-200" href="https://www.instagram.com/kalpkantproductions?igsh=OGE2OHlicTRmMGx3" target="_blank">
+            <a className="text-gray-200 hover:bg-gray-500 w-fit px-2 py-1 rounded-xl" href="https://www.instagram.com/kalpkantproductions?igsh=OGE2OHlicTRmMGx3" target="_blank">
               Instagram
             </a>
-            <a className="text-gray-200" href="https://discord.gg/cgEeMKRx" target="_blank">
+            <a className="text-gray-200 hover:bg-gray-500 w-fit px-2 py-1 rounded-xl" href="https://discord.gg/cgEeMKRx" target="_blank">
               Discord
             </a>
           </div>
         </div>
       </div>
         <div className="copyright text-center text-white bg-slate-600">
-          <h1>&copy; All Rights reserved to Chandan Kumar</h1>
+          <h1>&copy; 2025 Chandan Kumar. All Rights Reserved. </h1>
         </div>
     </main>
   );
