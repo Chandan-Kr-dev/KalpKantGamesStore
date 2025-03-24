@@ -1,6 +1,7 @@
 "use client";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import axios from "axios";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -27,11 +28,24 @@ interface Game {
 export default function Home() {
   const testimonials = [
     {
-      quote: "Phenomenal work, Chandan. Keep coding for the sheer passion of it and keep growing buddy. You got a long road ahead.",
+      quote:
+        "Phenomenal work, Chandan. Keep coding for the sheer passion of it and keep growing buddy. You got a long road ahead.",
       name: "Rudranil Chaudhary",
       linkedin: "http://linkedin.com/rudranilchowdhury28",
     },
-    
+  ];
+
+  const Assets = [
+    {
+      name: "3D Platform ",
+      link: "https://sketchfab.com/models/cedd2f111e424bf2b91e548ce614b905/embed",
+      visit: "https://sketchfab.com/3d-models/platform-cedd2f111e424bf2b91e548ce614b905",
+    },
+    {
+      name: "Low poly Dungeon",
+      link: "https://sketchfab.com/models/786b756ee34d4841988426d1e7477ac4/embed",
+      visit: "https://sketchfab.com/3d-models/low-poly-dungeon-game-ready-3d-environment-786b756ee34d4841988426d1e7477ac4",
+    },
   ];
 
   const router = useRouter();
@@ -116,21 +130,21 @@ export default function Home() {
 
       <section className="topfeatured text-white my-20 ">
         <div>
-          <h1 className="font-semibold text-xl my-3 "> My games</h1>
+          <h1 className="font-semibold  my-3 text-2xl "> My games</h1>
           <div className="container ">
             <div className="flex flex-wrap flex-col md:flex-row  justify-evenly items-center">
               {games.map((game, idx) => (
                 <div
                   key={idx}
                   hidden={idx > 3}
-                  className="game-card   rounded-xl p-2 md:w-[25vw] w-[80vw] flex flex-col justify-center items-center"
+                  className="game-card  w-fit m-2 rounded-xl hover:scale-105 border-2 border-gray-400 p-2 bg-gray-800 "
                 >
                   <button
                     onClick={() => sendid(game.id)}
-                    className="image-container mx-auto rounded-xl hover:-translate-y-2 border-2 border-gray-400 p-2 bg-gray-600  "
+                    className="image-container mx-auto w-full "
                   >
                     <Image
-                      className="rounded-xl"
+                      className="rounded-xl md:h-[20vh] md:w-[20vw] w-[100vw] object-contain"
                       src={game.coverimg}
                       alt={game.title}
                       height={200}
@@ -144,7 +158,7 @@ export default function Home() {
                     </div>
                   </div>
                   <a
-                    className="my-3 rounded px-2 py-1 bg-slate-500 hover:bg-slate-400"
+                    className="bg-gray-300 px-2 py-1 rounded-xl text-gray-600 font-serif"
                     href={game.gamelink}
                     target="_blank"
                   >
@@ -154,6 +168,36 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+      <section className="3DAssets text-white text-center my-10">
+        <h1 className="text-2xl font-semibold">My 3D Assets </h1>
+        <div className="flex justify-center items-center gap-5 flex-wrap">
+        {Assets.map((asset, idx) => (
+          <div
+            key={idx}
+            className="image-container mx-auto w-fit m-2 rounded-xl hover:scale-105 border-2 border-gray-400 p-2 bg-gray-600 "
+          >
+            <a href={asset.link} target="_blank" className="block">
+              <iframe
+                title="Sketchfab Model"
+                width=""
+                height=""
+                src={asset.link}
+                frameBorder="0"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                allowFullScreen
+                className="rounded-xl"
+              ></iframe>
+            </a>
+            <div className="game-card-content my-2 ">
+              <div>
+                <h2 className="text-lg font-medium">{asset.name}</h2>
+                <a href={asset.visit} target="_blank" className="bg-gray-300 px-2 py-1 rounded-xl text-gray-600 font-serif">Download</a>
+              </div>
+            </div>
+          </div>
+        ))}
         </div>
       </section>
       {/* <section className="freegames text-white  my-20">
@@ -239,15 +283,16 @@ export default function Home() {
           </button>
         </div>
       </section> */}
-      {testimonials.length>3?(<div className=" rounded-md flex flex-col antialiased bg-black dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
-      <h1 className="text-white text-2xl font-semibold">Testimonials</h1>
-        <InfiniteMovingCards
-          items={testimonials}
-          direction="right"
-          speed="slow"
-        />
-      </div>):(null)}
-      
+      {testimonials.length > 3 ? (
+        <div className=" rounded-md flex flex-col antialiased bg-black dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+          <h1 className="text-white text-2xl font-semibold">Testimonials</h1>
+          <InfiniteMovingCards
+            items={testimonials}
+            direction="right"
+            speed="slow"
+          />
+        </div>
+      ) : null}
     </main>
   );
 }
