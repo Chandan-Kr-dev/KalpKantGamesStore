@@ -108,9 +108,10 @@ export const InfiniteMovingCards = ({
                 </span>
               </div>
                 <div className="links my-4">
-                    <a href={item.linkedin} target="_blank" className=" ">
+                  {item.linkedin?(<a href={item.linkedin} target="_blank" className=" ">
                     <FaLinkedin className="text-2xl hover:invert " />
-                    </a>
+                    </a>):(null)}
+                    
                 </div>
             </blockquote>
           </li>

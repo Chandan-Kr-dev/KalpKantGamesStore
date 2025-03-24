@@ -33,6 +33,16 @@ export default function Home() {
       name: "Rudranil Chaudhary",
       linkedin: "http://linkedin.com/rudranilchowdhury28",
     },
+    {
+      quote: "Kalpkant Games Store is a hidden gem! The games are unique, immersive, and full of creativity. I especially loved 'End of the Line'—the racing mechanics are top-notch!",
+      name: "Pranab Sarkar",
+      linkedin: "https://www.linkedin.com/in/pranab-sarkar-6069aa310"
+    },
+    {
+      quote: "I played 'Gravity Flux' and was blown away by the level design and physics. It's rare to see such polished indie games. Can't wait for more releases!",
+      name: "Rohan Mehta",
+      linkedin: ""
+    },
   ];
 
   const Assets = [
@@ -130,7 +140,7 @@ export default function Home() {
 
       <section className="topfeatured text-white my-20 ">
         <div>
-          <h1 className="font-semibold  my-3 text-2xl "> My games</h1>
+          <h1 className="font-semibold  my-3 text-2xl text-center "> My games</h1>
           <div className="container ">
             <div className="flex flex-wrap flex-col md:flex-row  justify-evenly items-center">
               {games.map((game, idx) => (
@@ -283,12 +293,12 @@ export default function Home() {
           </button>
         </div>
       </section> */}
-      {testimonials.length > 3 ? (
+      {testimonials.length >= 3 ? (
         <div className=" rounded-md flex flex-col antialiased bg-black dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
           <h1 className="text-white text-2xl font-semibold">Testimonials</h1>
           <InfiniteMovingCards
             items={testimonials}
-            direction="right"
+            direction="left"
             speed="slow"
           />
         </div>
