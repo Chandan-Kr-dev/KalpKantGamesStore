@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css"
 import emailjs from "@emailjs/browser"
 import { useRef ,useState} from "react";
 import { Loader2 } from "lucide-react";
-import { FaYoutube } from "react-icons/fa";
+
 import Swal from 'sweetalert2'
 export default function Footer() {
   const [Name, setName] = useState("")  
