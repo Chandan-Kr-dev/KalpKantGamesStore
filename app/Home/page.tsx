@@ -39,9 +39,9 @@ export default function Home() {
       linkedin: "https://www.linkedin.com/in/pranab-sarkar-6069aa310"
     },
     {
-      quote: "I played 'Gravity Flux' and was blown away by the level design and physics. It's rare to see such polished indie games. Can't wait for more releases!",
-      name: "Rohan Mehta",
-      linkedin: ""
+      quote: "Chandan's Game Store is a paradise for gamers! With an amazing collection of the latest titles, classic favorites, and top-notch customer service, it's the perfect spot for every gaming enthusiast. The passion and dedication to providing the best gaming experience truly shine through!",
+      name: "Aditi Chatterjee",
+      linkedin: "https://www.linkedin.com/in/aditi-chatterjee-7b97552b1"
     },
   ];
 
