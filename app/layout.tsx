@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NextSeo } from "next-seo";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -37,7 +38,7 @@ export default function RootLayout({
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-P2FL06P3XR"
         ></script>
-        <script >
+        <script>
           {`
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -45,6 +46,20 @@ export default function RootLayout({
 
   gtag('config', 'G-P2FL06P3XR');`}
         </script>
+        <NextSeo
+          title="Kalpkant Games Store - Download & Buy Games"
+          description="Explore and download the best indie games at Kalpkant Games Store."
+          canonical="https://kalpkantgames.tech/"
+          openGraph={{
+            url: "https://kalpkantgames.tech/",
+            title: "Kalpkant Games Store",
+            description: "Explore the best indie games.",
+            images: [
+              { url: "https://kalpkantgames.tech/og-image.jpg" },
+            ],
+            siteName: "Kalpkant Games",
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
