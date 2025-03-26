@@ -43,6 +43,7 @@ export default function RootLayout({
         <meta name="og:image" content="https://kalpkantgames.tech/og-image.jpg" />
         <meta name="og:url" content="https://kalpkantgames.tech/" />
         <meta name="google-site-verification" content="8eSvh0en8XRrVhaOShyVibev8sB4zX7D4hdqlFBx2qw" />
+        <meta name="google-adsense-account" content="ca-pub-1674197696050997"></meta>
       </Head>
 
       
