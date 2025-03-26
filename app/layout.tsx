@@ -16,17 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: "Kalpkant Games Store",
-//     template: "%s - Kalpkant games",
-//   },
-//   description: "Your Gateway to infinite adventures",
-//   other: {
-//     "google-adsense-account": "ca-pub-1674197696050997",
-//     "google-site-verification": "8eSvh0en8XRrVhaOShyVibev8sB4zX7D4hdqlFBx2qw",
-//   },
-// };
+
 
 export default function RootLayout({
   children,
@@ -43,7 +33,7 @@ export default function RootLayout({
         <meta name="og:image" content="https://kalpkantgames.tech/og-image.jpg" />
         <meta name="og:url" content="https://kalpkantgames.tech/" />
         <meta name="google-site-verification" content="8eSvh0en8XRrVhaOShyVibev8sB4zX7D4hdqlFBx2qw" />
-        <meta name="google-adsense-account" content="ca-pub-1674197696050997"></meta>
+        <meta name="google-adsense-account" content="ca-pub-1674197696050997"/>
       </Head>
 
       
