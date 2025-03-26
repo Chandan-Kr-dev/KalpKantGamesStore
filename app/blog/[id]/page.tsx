@@ -66,6 +66,7 @@ export default function ViewBlogPost() {
                     setError('Blog post not found');
                 }
             } catch (err) {
+                console.error(err);
                 setError('Error fetching blog post');
             } finally {
                 setLoading(false);

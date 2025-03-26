@@ -80,7 +80,7 @@ export default function Blogs ()  {
                   )}
                 </div>
                 
-                <h2 className="text-xl font-semibold mb-2 text-white hover:text-neon-blue">
+                <h2 className="text-xl font-semibold mb-2 text-white hover:text-neon-blue hover:underline">
                   <Link href={`/blog/${post.id}`}>
                     {post.title}
                   </Link>
