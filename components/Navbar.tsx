@@ -61,7 +61,7 @@ export default function Navbar() {
             Store
           </h2>
         </div>
-        <div className="text-lg bg-gray-700 rounded-xl my-2 px-2 text-white">
+        <div className="text-lg bg-gray-700 rounded-xl my-2 px-2 text-white"> 
          <Link href="/Blogs">Blogs</Link>
         </div>
         {/* <ul className="space-x-5"> */}
