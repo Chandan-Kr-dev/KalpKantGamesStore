@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kalpkantgames.tech
+
+# Sitemaps
+Sitemap: https://kalpkantgames.tech/sitemap.xml
