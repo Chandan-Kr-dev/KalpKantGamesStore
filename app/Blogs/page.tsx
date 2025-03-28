@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 
 export interface BlogPost {
@@ -47,10 +48,12 @@ export default function Blogs ()  {
         
       ];
   return (
+    <>
+      <Navbar/>
     <div className="min-h-screen bg-black text-white p-8">
       <div className="container mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center text-neon-blue">
-          Developer Blog
+        <h1 className="text-4xl font-bold mb-8  text-neon-blue">
+          Developer Blogs
         </h1>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -104,5 +107,6 @@ export default function Blogs ()  {
         </div>
       </div>
     </div>
+    </>
   );
 };
