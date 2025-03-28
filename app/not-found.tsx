@@ -54,8 +54,8 @@ export default function NotFound() {
           <h1 className="text-6xl font-bold text-red-500 mb-4">404</h1>
           <h2 className="text-3xl font-semibold mb-4">Oops! Level Not Found</h2>
           <p className="text-gray-400 mb-8">
-            You've encountered an unexpected error screen. 
-            The page you're searching for might have been removed or doesn't exist.
+            You&apos;ve encountered an unexpected error screen. 
+            The page you&apos;re searching for might have been removed or doesn&apos;t exist.
           </p>
         </div>
         
