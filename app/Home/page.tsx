@@ -1,4 +1,7 @@
 "use client";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import Navbar2 from "@/components/Navbar2";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import axios from "axios";
 
@@ -118,6 +121,9 @@ export default function Home() {
   };
 
   return (
+    <>
+    <Navbar/>
+    <Navbar2/>
     <main className="md:mx-44 mx-10 my-5">
       <section className="flex justify-between flex-col md:flex-row items-center text-white">
         <div className="space-y-6">
@@ -304,5 +310,7 @@ export default function Home() {
         </div>
       ) : null}
     </main>
+    <Footer/>
+    </>
   );
 }
