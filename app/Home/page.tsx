@@ -48,6 +48,12 @@ export default function Home() {
       name: "Aditi Chatterjee",
       linkedin: "https://www.linkedin.com/in/aditi-chatterjee-7b97552b1",
     },
+    {
+      quote:
+        "Hi, I am Anik . I really liked these games . Rating- 5 STAR",
+      name: "Anik Bhaumik",
+      linkedin: "",
+    },
   ];
 
   const Assets = [
