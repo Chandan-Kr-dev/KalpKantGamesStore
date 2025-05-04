@@ -334,14 +334,14 @@ export default function Home() {
               indie creators and bring unique games to the spotlight, we provide
               a space where creativity, innovation, and community come together.
               <br />
-              Whether you're here to discover exciting new games, download and
-              play, or you're a developer ready to showcase your creation,
+              Whether you&apos;re here to discover exciting new games, download and
+              play, or you&apos;re a developer ready to showcase your creation,
               Kalpkant Games makes it possible. Our mission is to make game
               publishing easier, accessible, and more rewarding for independent
               developers while offering gamers a diverse and growing library of
               quality titles. We believe in: <br /><br />🌟 Supporting indie talent <br /> 🎮
               Creating a gamer-first experience <br /> 🚀 Growing a community around <br /> <br />
-              creativity and fun We're just getting started—and we’re building
+              creativity and fun We're just getting started—and we&apos;re building
               this platform with you. <br />Your feedback, your games, and your
               passion will shape the future of Kalpkant Games. <br />Join us on this
               journey—because the future of gaming starts with imagination.
