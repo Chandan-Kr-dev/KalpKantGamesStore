@@ -151,9 +151,9 @@ const [Loader, setLoader] = useState(false)
             <a className="text-gray-200 hover:bg-gray-500 w-fit px-2 py-1 rounded-xl" href="https://www.instagram.com/kalpkantproductions?igsh=OGE2OHlicTRmMGx3" target="_blank">
               Instagram
             </a>
-            <a className="text-gray-200 hover:bg-gray-500 w-fit px-2 py-1 rounded-xl" href="https://discord.gg/cgEeMKRx" target="_blank">
+            {/* <a className="text-gray-200 hover:bg-gray-500 w-fit px-2 py-1 rounded-xl" href="https://discord.gg/cgEeMKRx" target="_blank">
               Discord
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
